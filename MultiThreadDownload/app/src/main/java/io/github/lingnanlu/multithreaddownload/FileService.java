@@ -18,7 +18,7 @@ public class FileService {
         this.openHelper = new DBOpenHelper(context);
     }
 
-
+:name=
     public void update(String downloadUrl, int threadId, int pos) {
         SQLiteDatabase db = openHelper.getWritableDatabase();
         db.execSQL("update filedownlog set downlength=? where downpath=? and threadId=?",

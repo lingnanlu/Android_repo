@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class SharedPreferencesDemo extends AppCompatActivity {
 
-    private static final String TAG = "SharedPreferencesDemo";
+    private static final String TAG = "activity_shared_preferences";
 
     static final String SP_FILE_NAME = "sp_test";
     static final String SP_NAME = "sp_name";
@@ -19,7 +19,7 @@ public class SharedPreferencesDemo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.SharedPreferencesDemo);
+        setContentView(R.layout.activity_shared_preferences);
 
         mPerf = getSharedPreferences(SP_FILE_NAME, MODE_PRIVATE);
         mEditor = mPerf.edit();
