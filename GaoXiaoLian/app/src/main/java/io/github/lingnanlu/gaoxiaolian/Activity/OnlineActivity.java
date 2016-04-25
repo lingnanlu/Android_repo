@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import io.github.lingnanlu.gaoxiaolian.R;
 
-public class OnlineActivity extends AppCompatActivity {
+public class OnlineActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

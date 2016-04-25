@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import io.github.lingnanlu.gaoxiaolian.R;
 
-public class LaunchActivity extends AppCompatActivity {
+public class LaunchActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +17,7 @@ public class LaunchActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(LaunchActivity.this, LoginActivity.class);
-                startActivity(i);
+                startActivity(LoginActivity.class);
                 finish();
             }
         }, 1500);

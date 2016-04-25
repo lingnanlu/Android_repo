@@ -11,43 +11,43 @@
     tools:context=".Activity.LoginActivity">
 
     <EditText
+        android:id="@+id/et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:id="@+id/editText2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"/>
 
     <EditText
+        android:id="@+id/et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/et_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"/>
 
     <Button
+        android:id="@+id/bt_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:id="@+id/button"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"/>
+        android:layout_alignLeft="@+id/et_password"
+        android:layout_alignStart="@+id/et_password"/>
 
     <Button
+        android:id="@+id/bt_signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign UP"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3"/>
+        android:layout_alignTop="@+id/bt_signIn"
+        android:layout_alignRight="@+id/et_password"
+        android:layout_alignEnd="@+id/et_password"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,8 +55,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Forget the password?"
         android:id="@+id/textView"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/bt_signIn"
+        android:layout_alignLeft="@+id/bt_signIn"
+        android:layout_alignStart="@+id/bt_signIn"
         android:layout_marginTop="23dp"/>
 </RelativeLayout>
