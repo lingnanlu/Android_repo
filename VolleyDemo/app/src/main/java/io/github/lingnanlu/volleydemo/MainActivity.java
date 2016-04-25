@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,18 +27,25 @@ public class MainActivity extends AppCompatActivity {
     ImageView mPicture;
     Button mImageLoader;
     NetworkImageView mNetWorkImageView;
+    TextView mText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mQueue = Volley.newRequestQueue(this);
 
+        mText = (TextView) findViewById(R.id.tv_result);
+
+
         StringRequest stringRequest = new StringRequest(
-                "http://www.baidu.com",
+                "http://115.156.163.234:94/api/temperature?limit=10",
                 new SuccessListener(),
                 new ErrorListener()
         );
 
+        stringRequest.setTag("TestTag");
         mQueue.add(stringRequest);
 
 //        XMLRequest xmlRequest = new XMLRequest(
@@ -124,16 +132,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private static class SuccessListener implements Response.Listener<String> {
+    private class SuccessListener implements Response.Listener<String> {
 
         @Override
         public void onResponse(String response) {
+            mText.setText(response);
             Log.d(TAG, "onResponse: " + response);
         }
 
     }
 
-    private static class ErrorListener implements Response.ErrorListener {
+    private class ErrorListener implements Response.ErrorListener {
 
 
         @Override
@@ -168,5 +177,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (mQueue != null) {
+            mQueue.cancelAll("TestTag");
+        }
     }
 }
