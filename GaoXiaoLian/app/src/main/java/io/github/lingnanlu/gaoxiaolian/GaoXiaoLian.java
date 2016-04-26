@@ -11,8 +11,8 @@ public class GaoXiaoLian extends Application {
 
     @Override
     public void onCreate() {
-        super.onCreate();
 
+        super.onCreate();
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
 
     }
