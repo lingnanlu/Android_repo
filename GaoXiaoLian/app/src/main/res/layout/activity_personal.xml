@@ -10,4 +10,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Activity.InfoActivity">
 
+    <TextView
+        android:id="@+id/tx_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关注"
+        android:id="@+id/bt_follow"
+        android:layout_below="@+id/tx_name"
+        android:layout_toRightOf="@+id/tx_name"
+        android:layout_toEndOf="@+id/tx_name"
+        android:layout_marginTop="79dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回主页"
+        android:id="@+id/bt_ret_home"
+        android:layout_below="@+id/bt_send_private_msg"
+        android:layout_toRightOf="@+id/tx_name"
+        android:layout_toEndOf="@+id/tx_name" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送私信"
+        android:id="@+id/bt_send_private_msg"
+        android:layout_below="@+id/bt_unfollow"
+        android:layout_toRightOf="@+id/tx_name"
+        android:layout_toEndOf="@+id/tx_name" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消关注"
+        android:id="@+id/bt_unfollow"
+        android:layout_below="@+id/bt_follow"
+        android:layout_toRightOf="@+id/tx_name"
+        android:layout_toEndOf="@+id/tx_name" />
+
 </RelativeLayout>

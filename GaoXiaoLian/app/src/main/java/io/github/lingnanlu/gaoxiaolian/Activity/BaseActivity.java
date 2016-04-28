@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import butterknife.ButterKnife;
+
 public class BaseActivity extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();

@@ -32,7 +32,7 @@
         <activity android:name=".Activity.FFActivity"></activity>
         <activity android:name=".Activity.OnlineActivity"></activity>
         <activity android:name=".Activity.PrivateMessageListActivity"></activity>
-        <activity android:name=".Activity.ConversationActivity"></activity>
+        <activity android:name=".Activity.ChatActivity"></activity>
         <activity android:name=".Activity.MatchResultActivity"></activity>
         <activity android:name=".Activity.MatchActivity"></activity>
         <activity android:name=".Activity.MatchSettingActivity"></activity>

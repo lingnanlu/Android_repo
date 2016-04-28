@@ -8,11 +8,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="io.github.lingnanlu.gaoxiaolian.Activity.ConversationActivity">
+    tools:context=".Activity.ChatActivity">
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/rc_coversation"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--/>-->
+    <fragment
+        android:id="@+id/fg_chat"
+        android:name="io.github.lingnanlu.gaoxiaolian.Fragment.ChatFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_chat" />
+
 </RelativeLayout>
