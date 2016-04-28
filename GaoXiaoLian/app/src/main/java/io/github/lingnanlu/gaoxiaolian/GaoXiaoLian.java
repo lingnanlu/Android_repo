@@ -1,18 +1,12 @@
 package io.github.lingnanlu.gaoxiaolian;
 
 import android.app.Application;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
-import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
-
-import io.github.lingnanlu.gaoxiaolian.Activity.HomeActivity;
+import com.avos.avoscloud.im.v2.AVIMMessageManager;
+import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 
 /**
  * Created by rico on 4/25/2016.
@@ -28,7 +22,11 @@ public class GaoXiaoLian extends Application {
         super.onCreate();
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
 
+        AVIMMessageManager.registerMessageHandler(AVIMTypedMessage.class, new MessageHandler(this));
+
+
     }
+
 
     public static AVUser getUser() {
         return user;

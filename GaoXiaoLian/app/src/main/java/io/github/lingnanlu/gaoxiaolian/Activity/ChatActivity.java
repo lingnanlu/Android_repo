@@ -8,12 +8,8 @@ import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
 import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
-import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
-import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
-
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +43,7 @@ public class ChatActivity extends BaseActivity {
             public void done(List<AVIMConversation> list, AVIMException e) {
                 if (e == null) {
                     Log.d(TAG, "done: conversation query success");
-                    if(list != null) {
+                    if(list != null && list.size() > 0) {
                         fgChat.setConversation(list.get(0));
                     } else {
                         //创建对话
