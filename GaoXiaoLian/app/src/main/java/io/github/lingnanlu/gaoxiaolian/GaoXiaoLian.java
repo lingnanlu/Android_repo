@@ -13,13 +13,15 @@ import com.avos.avoscloud.im.v2.AVIMTypedMessage;
  */
 public class GaoXiaoLian extends Application {
 
-    static AVUser user;
+    static User user;
     static AVIMClient client;
 
     @Override
     public void onCreate() {
 
         super.onCreate();
+
+        AVUser.alwaysUseSubUserClass(User.class);
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
 
         AVIMMessageManager.registerMessageHandler(AVIMTypedMessage.class, new MessageHandler(this));
@@ -28,11 +30,11 @@ public class GaoXiaoLian extends Application {
     }
 
 
-    public static AVUser getUser() {
+    public static User getUser() {
         return user;
     }
 
-    public static void setUser(AVUser user) {
+    public static void setUser(User user) {
         GaoXiaoLian.user = user;
     }
 

@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.User;
 
 public class LoginActivity extends BaseActivity {
 
@@ -44,11 +45,10 @@ public class LoginActivity extends BaseActivity {
         btSignIn.setEnabled(false);
         btSignUp.setEnabled(false);
 
-        AVUser.logInInBackground(name, password, new LogInCallback<AVUser>() {
+        AVUser.logInInBackground(name, password, new LogInCallback<User>() {
             @Override
-            public void done(AVUser user, AVException e) {
+            public void done(User user, AVException e) {
                 if( e == null) {
-
                     GaoXiaoLian.setUser(user);
                     final AVIMClient client = AVIMClient.getInstance(user.getObjectId());
                     client.open(new AVIMClientCallback() {
@@ -61,6 +61,8 @@ public class LoginActivity extends BaseActivity {
                                 finish();
                             } else {
                                 Log.d(TAG, "done: client open failed");
+                                btSignUp.setEnabled(true);
+                                btSignIn.setEnabled(true);
                             }
                         }
                     });
@@ -68,9 +70,11 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     //登陆失败
                     Toast.makeText(LoginActivity.this, "用户名或密码不正确", Toast.LENGTH_LONG).show();
+                    btSignUp.setEnabled(true);
+                    btSignIn.setEnabled(true);
                 }
             }
-        });
+        }, User.class);
     }
 
     @OnClick(R.id.bt_signUp)

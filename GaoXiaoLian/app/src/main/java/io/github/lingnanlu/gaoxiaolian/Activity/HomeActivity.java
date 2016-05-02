@@ -16,21 +16,26 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.User;
 
 public class HomeActivity extends BaseActivity {
 
 
-    @Bind(R.id.tx_name)
-    TextView txName;
-
-    @Bind(R.id.bt_online)
-    Button btOnline;
+    @Bind(R.id.tx_name) TextView txName;
+    @Bind(R.id.bt_online) Button btOnline;
+    @Bind(R.id.bt_edit) Button btEdit;
 
     @OnClick(R.id.bt_online)
     public void onOnlineClick(View view) {
         startActivity(OnlineActivity.class);
     }
 
+    @OnClick(R.id.bt_edit)
+    public void onEditClick(View view) {
+
+        startActivity(EditActivity.class);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,7 +43,8 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        AVUser user = GaoXiaoLian.getUser();
+        User user = GaoXiaoLian.getUser();
+
         txName.setText(user.getUsername());
 
 
