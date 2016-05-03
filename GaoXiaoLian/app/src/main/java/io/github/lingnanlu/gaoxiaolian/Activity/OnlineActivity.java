@@ -22,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.adapter.UserListAdapter;
 
 public class OnlineActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
@@ -41,7 +42,7 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
             public void done(List<User> list, AVException e) {
                 if( e == null ) {
                     Log.d(TAG, "done: user list" + list);
-                    lvOnlineUsers.setAdapter(new OnlineUserAdapter(OnlineActivity.this, list));
+                    lvOnlineUsers.setAdapter(new UserListAdapter(OnlineActivity.this, list));
                     lvOnlineUsers.setOnItemClickListener(OnlineActivity.this);
                 } else {
                     Log.d(TAG, "done: get user list failed");
@@ -64,56 +65,5 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
     }
 
 
-    private static class OnlineUserAdapter extends BaseAdapter {
 
-        LayoutInflater inflater;
-        List<User> users;
-
-        public OnlineUserAdapter(Context context, List<User> users) {
-            inflater = LayoutInflater.from(context);
-            this.users = users;
-        }
-
-        @Override
-        public int getCount() {
-            if (users != null) return users.size();
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-
-            if (users != null ) return users.get(position);
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder viewHolder;
-            if (convertView == null) {
-
-                convertView = inflater.inflate(R.layout.item_user, null);
-
-                viewHolder = new ViewHolder();
-                viewHolder.name = (TextView) convertView.findViewById(R.id.tx_name);
-
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-
-            viewHolder.name.setText(users.get(position).getUsername());
-            return convertView;
-        }
-
-        class ViewHolder {
-            TextView name;
-        }
-    }
 }

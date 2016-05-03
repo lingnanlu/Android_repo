@@ -25,7 +25,7 @@ import io.github.lingnanlu.gaoxiaolian.Event.ImTypeMessageEvent;
 import io.github.lingnanlu.gaoxiaolian.Event.InputBottomBarTextEvent;
 import io.github.lingnanlu.gaoxiaolian.InputBottomBar;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.adapter.MultipleItemAdapter;
+import io.github.lingnanlu.gaoxiaolian.adapter.MessageListAdapter;
 
 public class ChatFragment extends Fragment {
 
@@ -33,7 +33,7 @@ public class ChatFragment extends Fragment {
     private static final String TAG = "ChatFragment";
     protected AVIMConversation conversation;
     protected RecyclerView recyclerView;
-    protected MultipleItemAdapter itemAdapter;
+    protected MessageListAdapter itemAdapter;
     protected LinearLayoutManager layoutManager;
     protected InputBottomBar inputBottomBar;
 
@@ -48,7 +48,7 @@ public class ChatFragment extends Fragment {
         inputBottomBar = (InputBottomBar) view.findViewById(R.id.bottom_bar);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        itemAdapter = new MultipleItemAdapter();
+        itemAdapter = new MessageListAdapter();
         recyclerView.setAdapter(itemAdapter);
 
         EventBus.getDefault().register(this);

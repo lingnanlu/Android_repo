@@ -37,6 +37,7 @@ public class GaoXiaoLian extends Application {
     }
 
 
+
     public static User getUser() {
 
         if (user == null) {

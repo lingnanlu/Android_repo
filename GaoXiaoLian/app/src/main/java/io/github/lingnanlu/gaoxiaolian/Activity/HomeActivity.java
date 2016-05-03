@@ -15,11 +15,11 @@ import io.github.lingnanlu.gaoxiaolian.User;
 
 public class HomeActivity extends BaseActivity {
 
-
     @Bind(R.id.tx_name) TextView txName;
     @Bind(R.id.bt_online) Button btOnline;
     @Bind(R.id.bt_edit) Button btEdit;
     @Bind(R.id.bt_personal) Button btPersonal;
+    @Bind(R.id.bt_follower_followee) Button btFollowerFollowee;
 
     @OnClick(R.id.bt_online)
     public void onOnlineClick(View view) {
@@ -37,6 +37,12 @@ public class HomeActivity extends BaseActivity {
         intent.putExtra(PersonalActivity.USERID, GaoXiaoLian.getUser().getObjectId());
         startActivity(intent);
     }
+
+    @OnClick(R.id.bt_follower_followee)
+    public void onFFClick(View view) {
+        startActivity(FFActivity.class);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

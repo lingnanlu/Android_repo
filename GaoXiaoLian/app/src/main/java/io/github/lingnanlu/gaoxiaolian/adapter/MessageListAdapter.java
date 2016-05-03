@@ -16,7 +16,7 @@ import io.github.lingnanlu.gaoxiaolian.ViewHolder.RightTextHolder;
 /**
  * Created by rico on 4/27/2016.
  */
-public class MultipleItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final int ITEM_LEFT_TEXT = 0;
     private final int ITEM_RIGHT_TEXT = 1;
