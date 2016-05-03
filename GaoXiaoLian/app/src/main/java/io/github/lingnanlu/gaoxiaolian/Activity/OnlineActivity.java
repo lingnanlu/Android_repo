@@ -55,7 +55,8 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
         AVUser user = (AVUser) parent.getItemAtPosition(position);
 
         if (user != null) {
-            Intent intent = new Intent(this, InfoActivity.class);
+            Intent intent = new Intent(this, PersonalActivity.class);
+            intent.putExtra(PersonalActivity.FROM, this.getClass().getSimpleName());
             intent.putExtra("user", user);
             startActivity(intent);
         }

@@ -11,17 +11,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SignUpCallback;
-import com.avos.avoscloud.im.v2.AVIMClient;
-import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
 
@@ -62,10 +56,10 @@ public class RegisterActivity extends BaseActivity{
     @OnClick(R.id.bt_register)
     public void onRegisterClick(View view) {
 
-        user.set(User.USERNAME, etName.getText().toString());
-        user.set(User.PASSWORD, etPassword.getText().toString());
-        user.set(User.EMAIL, etEmail.getText().toString());
-        user.set(User.SN, etSN.getText().toString());
+        user.setUsername(etName.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        user.setEmail(etEmail.getText().toString());
+        user.put(User.SN, etSN.getText().toString());
 
         user.signUpInBackground(new SignUpCallback() {
             @Override
@@ -97,7 +91,7 @@ public class RegisterActivity extends BaseActivity{
         spSchool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                user.set(User.SCHOOL, schools[position]);
+                user.put(User.SCHOOL, schools[position]);
             }
 
             @Override
@@ -110,7 +104,7 @@ public class RegisterActivity extends BaseActivity{
         spSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                user.set(User.SEX, sex[position]);
+                user.put(User.SEX, sex[position]);
             }
 
             @Override
@@ -124,7 +118,7 @@ public class RegisterActivity extends BaseActivity{
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                user.set(User.STATUS,status[position]);
+                user.put(User.STATUS,status[position]);
             }
 
             @Override
@@ -145,9 +139,9 @@ public class RegisterActivity extends BaseActivity{
         status = getResources().getStringArray(R.array.status);
 
         //default value
-        user.set(User.SCHOOL, schools[0]);
-        user.set(User.SEX, sex[0]);
-        user.set(User.STATUS,status[0]);
+        user.put(User.SCHOOL, schools[0]);
+        user.put(User.SEX, sex[0]);
+        user.put(User.STATUS,status[0]);
     }
 
 }

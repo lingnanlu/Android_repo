@@ -1,15 +1,10 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.avos.avoscloud.AVUser;
-
-import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,6 +19,7 @@ public class HomeActivity extends BaseActivity {
     @Bind(R.id.tx_name) TextView txName;
     @Bind(R.id.bt_online) Button btOnline;
     @Bind(R.id.bt_edit) Button btEdit;
+    @Bind(R.id.bt_personal) Button btPersonal;
 
     @OnClick(R.id.bt_online)
     public void onOnlineClick(View view) {
@@ -35,6 +31,13 @@ public class HomeActivity extends BaseActivity {
 
         startActivity(EditActivity.class);
 
+    }
+
+    @OnClick(R.id.bt_personal)
+    public void onPersonalClick(View view) {
+        Intent intent = new Intent(this, PersonalActivity.class);
+        intent.putExtra(PersonalActivity.FROM, this.getClass().getSimpleName());
+        startActivity(intent);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

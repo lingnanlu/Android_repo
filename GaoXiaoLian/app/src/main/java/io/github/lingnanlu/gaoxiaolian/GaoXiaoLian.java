@@ -8,6 +8,9 @@ import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMMessageManager;
 import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by rico on 4/25/2016.
  */
@@ -16,6 +19,7 @@ public class GaoXiaoLian extends Application {
     static User user;
     static AVIMClient client;
 
+    public static Map<Integer, String> user_attrs;
     @Override
     public void onCreate() {
 
@@ -26,6 +30,9 @@ public class GaoXiaoLian extends Application {
 
         AVIMMessageManager.registerMessageHandler(AVIMTypedMessage.class, new MessageHandler(this));
 
+        user_attrs = new HashMap<>();
+
+        user_attrs.put(R.string.college, getResources().getString(R.string.college));
 
     }
 

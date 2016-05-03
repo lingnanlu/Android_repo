@@ -27,7 +27,7 @@
         <activity android:name=".Activity.LoginActivity"></activity>
         <activity android:name=".Activity.HomeActivity"></activity>
         <activity android:name=".Activity.RegisterActivity"></activity>
-        <activity android:name=".Activity.InfoActivity"></activity>
+        <activity android:name=".Activity.PersonalActivity"></activity>
         <activity android:name=".Activity.EditActivity"></activity>
         <activity android:name=".Activity.FFActivity"></activity>
         <activity android:name=".Activity.OnlineActivity"></activity>
