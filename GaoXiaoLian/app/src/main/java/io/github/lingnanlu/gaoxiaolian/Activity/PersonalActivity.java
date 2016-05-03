@@ -24,7 +24,7 @@ import io.github.lingnanlu.gaoxiaolian.User;
 
 public class PersonalActivity extends BaseActivity {
 
-    public static final String FROM = "from";
+    public static final String USERID = "userid";
     User user = null;
 
     @Bind(R.id.tx_name) TextView txName;
@@ -80,7 +80,7 @@ public class PersonalActivity extends BaseActivity {
     @OnClick(R.id.bt_send_private_msg)
     public void onSendPrivateMsgClick(View view) {
         Intent intent = new Intent(PersonalActivity.this, ChatActivity.class);
-        intent.putExtra("user", user);
+        //intent.putExtra("user", user);
         startActivity(intent);
     }
 
@@ -100,16 +100,20 @@ public class PersonalActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        String from = intent.getStringExtra(FROM);
+        String userId = intent.getStringExtra(USERID);
 
-        if (from.equals(HomeActivity.class.getSimpleName())) {
+        if (userId.equals(GaoXiaoLian.getUser().getObjectId())) {
 
             user = GaoXiaoLian.getUser();
             btEdit.setVisibility(View.VISIBLE);
 
-        } else if (from.equals(OnlineActivity.class.getSimpleName())) {
+        } else {
 
-            user = getIntent().getParcelableExtra("user");
+            //User并没有创建自己的CREATOR, 所以传递Parcelable时会出错
+            //user = intent.getParcelableExtra("userdata");
+
+            user = intent.getParcelableExtra("userdata");
+
             AVQuery<User> followeeQuery = null;
             try {
                 followeeQuery = GaoXiaoLian.getUser().followeeQuery(User.class);
@@ -145,18 +149,24 @@ public class PersonalActivity extends BaseActivity {
 
     private void fillTextViewByUser(User user) {
 
-        txName.setText(user.getUsername());
-        txBrief.setText(user.getString(User.BRIEF));
-        txContact.setText(user.getString(User.CONTACT));
-        txInterest.setText(user.getString(User.INTEREST));
-        txMotto.setText(user.getString(User.MOTTO));
-        txSchool.setText(user.getString(User.SCHOOL));
-        txSN.setText(user.getString(User.SN));
+        if (user != null) {
+            txName.setText(user.getUsername());
+            txBrief.setText(user.getString(User.BRIEF));
+            txContact.setText(user.getString(User.CONTACT));
+            txInterest.setText(user.getString(User.INTEREST));
+            txMotto.setText(user.getString(User.MOTTO));
+            txSchool.setText(user.getString(User.SCHOOL));
+            txSN.setText(user.getString(User.SN));
 
-        //是用户本人
-        if (user == GaoXiaoLian.getUser()) {
-            txPrivate.setText(user.getString(User.PRIVATE));
+            //是用户本人
+            if (user == GaoXiaoLian.getUser()) {
+                txPrivate.setText(user.getString(User.PRIVATE));
+            }
+        } else {
+            Log.d(TAG, "fillTextViewByUser: user is null");
+
         }
+
     }
 
 }

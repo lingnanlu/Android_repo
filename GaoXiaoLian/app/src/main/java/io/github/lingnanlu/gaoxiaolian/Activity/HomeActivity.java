@@ -28,15 +28,13 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick(R.id.bt_edit)
     public void onEditClick(View view) {
-
         startActivity(EditActivity.class);
-
     }
 
     @OnClick(R.id.bt_personal)
     public void onPersonalClick(View view) {
         Intent intent = new Intent(this, PersonalActivity.class);
-        intent.putExtra(PersonalActivity.FROM, this.getClass().getSimpleName());
+        intent.putExtra(PersonalActivity.USERID, GaoXiaoLian.getUser().getObjectId());
         startActivity(intent);
     }
     @Override

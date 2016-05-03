@@ -16,6 +16,7 @@ import com.avos.avoscloud.SignUpCallback;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
 
@@ -133,7 +134,7 @@ public class RegisterActivity extends BaseActivity{
 
     private void init() {
 
-        user = new User();
+        user = GaoXiaoLian.getUser();
         schools = getResources().getStringArray(R.array.school);
         sex = getResources().getStringArray(R.array.sex);
         status = getResources().getStringArray(R.array.status);

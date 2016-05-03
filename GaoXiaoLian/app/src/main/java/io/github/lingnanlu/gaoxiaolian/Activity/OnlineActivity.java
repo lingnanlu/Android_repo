@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 
 import java.util.List;
@@ -22,6 +21,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.User;
 
 public class OnlineActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
@@ -35,10 +35,10 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
         setContentView(R.layout.activity_on_line);
         ButterKnife.bind(this);
 
-        AVQuery<AVUser> userQuery = new AVQuery<>("_User");
-        userQuery.findInBackground(new FindCallback<AVUser>() {
+        AVQuery<User> userQuery = User.getUserQuery(User.class);
+        userQuery.findInBackground(new FindCallback<User>() {
             @Override
-            public void done(List<AVUser> list, AVException e) {
+            public void done(List<User> list, AVException e) {
                 if( e == null ) {
                     Log.d(TAG, "done: user list" + list);
                     lvOnlineUsers.setAdapter(new OnlineUserAdapter(OnlineActivity.this, list));
@@ -52,12 +52,13 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        AVUser user = (AVUser) parent.getItemAtPosition(position);
+        User user = (User) parent.getItemAtPosition(position);
 
         if (user != null) {
+            Log.d(TAG, "onItemClick: " + user.getClass().getSimpleName());
             Intent intent = new Intent(this, PersonalActivity.class);
-            intent.putExtra(PersonalActivity.FROM, this.getClass().getSimpleName());
-            intent.putExtra("user", user);
+            intent.putExtra(PersonalActivity.USERID, user.getObjectId());
+            intent.putExtra("userdata", user);
             startActivity(intent);
         }
     }
@@ -66,9 +67,9 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
     private static class OnlineUserAdapter extends BaseAdapter {
 
         LayoutInflater inflater;
-        List<AVUser> users;
+        List<User> users;
 
-        public OnlineUserAdapter(Context context, List<AVUser> users) {
+        public OnlineUserAdapter(Context context, List<User> users) {
             inflater = LayoutInflater.from(context);
             this.users = users;
         }

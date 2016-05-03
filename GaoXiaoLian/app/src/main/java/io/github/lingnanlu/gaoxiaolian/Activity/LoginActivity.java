@@ -1,6 +1,5 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +50,7 @@ public class LoginActivity extends BaseActivity {
                 if( e == null) {
                     GaoXiaoLian.setUser(user);
                     final AVIMClient client = AVIMClient.getInstance(user.getObjectId());
+
                     client.open(new AVIMClientCallback() {
                         @Override
                         public void done(AVIMClient avimClient, AVIMException e) {

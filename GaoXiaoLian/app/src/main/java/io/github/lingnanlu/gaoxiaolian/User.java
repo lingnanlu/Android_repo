@@ -1,5 +1,7 @@
 package io.github.lingnanlu.gaoxiaolian;
 
+import android.os.Parcel;
+
 import com.avos.avoscloud.AVUser;
 
 /**
@@ -7,7 +9,25 @@ import com.avos.avoscloud.AVUser;
  */
 public class User extends AVUser {
 
-    public static final Creator CREATOR = AVObjectCreator.instance;
+    public static final Creator<User> CREATOR = new User.Creator<User>() {
+
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[0];
+        }
+    };
+
+    private User(Parcel source) {
+        super(source);
+    }
+
+    public User() {}
+
 
     public static final String SEX = "sex"; //"female", "male"
     public static final String SCHOOL = "school";
@@ -24,6 +44,10 @@ public class User extends AVUser {
     public static final String PRIVATE = "private";
     public static final String VISIT_NUM = "visit_num";
     public static final String LIKE_NUM = "like_num";
+
+    //在线用户可以根据登录时间来判断
+    //同时也是用户的冒泡时间
+    public static final String LOGIN_TIME = "login_time";
 
 
     //父类会再次调用子类的put, 导致stackoverflow, 所以该方法暂时不行
