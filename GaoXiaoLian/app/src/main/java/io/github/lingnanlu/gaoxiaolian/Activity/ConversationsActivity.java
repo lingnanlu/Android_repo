@@ -29,7 +29,6 @@ public class ConversationsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_message);
-        //ButterKnife.bind(this);
 
         self = GaoXiaoLian.getUser();
         AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();

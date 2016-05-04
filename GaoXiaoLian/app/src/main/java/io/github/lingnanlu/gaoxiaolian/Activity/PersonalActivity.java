@@ -20,11 +20,18 @@ import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
-
+/*
+ * 该Activity有三种情况
+ * 1. 用户本身的信息界面
+ * 2. 其它已关注用户的信息界面
+ * 3. 其它未关注用户的信息界面
+ */
 public class PersonalActivity extends BaseActivity {
 
-    public static final String USERID = "userid";
-    User user = null;
+    //public static final String USERID = "userid";
+    public static final String USER = "user";
+
+    User user;
 
     @Bind(R.id.tx_name) TextView txName;
     @Bind(R.id.tx_brief) TextView txBrief;
@@ -89,7 +96,6 @@ public class PersonalActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
-       // ButterKnife.bind(this);
 
         //hide all buttons
         btFollow.setVisibility(View.GONE);
@@ -99,11 +105,11 @@ public class PersonalActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        String userId = intent.getStringExtra(USERID);
+        //String userId = intent.getStringExtra(USERID);
+        user = intent.getParcelableExtra(USER);
+        //显示的用户为自己
+        if (user == GaoXiaoLian.getUser()) {
 
-        if (userId.equals(GaoXiaoLian.getUser().getObjectId())) {
-
-            user = GaoXiaoLian.getUser();
             btEdit.setVisibility(View.VISIBLE);
 
         } else {
@@ -111,7 +117,7 @@ public class PersonalActivity extends BaseActivity {
             //User并没有创建自己的CREATOR, 所以传递Parcelable时会出错
             //self = intent.getParcelableExtra("userdata");
 
-            user = intent.getParcelableExtra("userdata");
+            //user = intent.getParcelableExtra(USERDATA);
 
             AVQuery<User> followeeQuery = null;
             try {
@@ -141,8 +147,6 @@ public class PersonalActivity extends BaseActivity {
 
         fillTextViewByUser(user);
 
-
-
     }
 
     private void fillTextViewByUser(User user) {
@@ -161,7 +165,7 @@ public class PersonalActivity extends BaseActivity {
                 txPrivate.setText(user.getString(User.PRIVATE));
             }
         } else {
-            Log.d(TAG, "fillTextViewByUser: self is null");
+            Log.d(TAG, "fillTextViewByUser: user is null");
 
         }
 

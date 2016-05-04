@@ -1,8 +1,10 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -21,7 +23,7 @@ import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
 import io.github.lingnanlu.gaoxiaolian.adapter.UserListAdapter;
 
-public class FFActivity extends BaseActivity {
+public class FFActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
     List<User> followers;
     List<User> followees;
@@ -53,12 +55,13 @@ public class FFActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ff);
-        //ButterKnife.bind(this);
 
         user = GaoXiaoLian.getUser();
         userListAdapter = new UserListAdapter(this);
+        lvUsers.setOnItemClickListener(this);
 
         AVFriendshipQuery friendshipQuery = AVUser.friendshipQuery(user.getObjectId(), User.class);
         friendshipQuery.include("followee");
@@ -83,5 +86,16 @@ public class FFActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        User user = (User) parent.getItemAtPosition(position);
+
+        if (user != null) {
+            Intent intent = new Intent(this, PersonalActivity.class);
+         //   intent.putExtra(PersonalActivity.USERID, user.getObjectId());
+            intent.putExtra(PersonalActivity.USER, user);
+            startActivity(intent);
+        }
+    }
 }

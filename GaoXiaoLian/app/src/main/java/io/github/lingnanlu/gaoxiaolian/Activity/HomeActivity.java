@@ -10,11 +10,10 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
 
 public class HomeActivity extends BaseActivity {
 
-    @Bind(R.id.tx_name) TextView txName;
+    @Bind(R.id.tx_name) TextView tvName;
     @Bind(R.id.bt_online) Button btOnline;
     @Bind(R.id.bt_edit) Button btEdit;
     @Bind(R.id.bt_personal) Button btPersonal;
@@ -34,7 +33,7 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.bt_personal)
     public void onPersonalClick(View view) {
         Intent intent = new Intent(this, PersonalActivity.class);
-        intent.putExtra(PersonalActivity.USERID, GaoXiaoLian.getUser().getObjectId());
+        intent.putExtra(PersonalActivity.USER, GaoXiaoLian.getUser());
         startActivity(intent);
     }
 
@@ -47,18 +46,13 @@ public class HomeActivity extends BaseActivity {
     public void onPrivateMsg(View view) {
         startActivity(ConversationsActivity.class);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-       // ButterKnife.bind(this);
-
-        User user = GaoXiaoLian.getUser();
-
-        txName.setText(user.getUsername());
-
+        tvName.setText(GaoXiaoLian.getUser().getUsername());
 
     }
 

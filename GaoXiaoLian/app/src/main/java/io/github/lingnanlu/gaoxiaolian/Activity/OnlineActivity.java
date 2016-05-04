@@ -14,10 +14,13 @@ import com.avos.avoscloud.FindCallback;
 import java.util.List;
 
 import butterknife.Bind;
+import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.User;
 import io.github.lingnanlu.gaoxiaolian.adapter.UserListAdapter;
 
+// TODO: 2016/5/4 online还未实现, SDK并没有提供得到在线用户的接口
+// 暂时可以想到, 利用用户的冒泡时间来模拟在线功能, 根据用户的冒泡时间来进行排序
 public class OnlineActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
     @Bind(R.id.list_online_users)
@@ -25,12 +28,13 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_line);
-        //ButterKnife.bind(this);
 
         AVQuery<User> userQuery = User.getUserQuery(User.class);
+        userQuery.whereNotEqualTo(User.OBJECT_ID, GaoXiaoLian.getUser().getObjectId());
+        userQuery.orderByDescending(User.BUBBLE_TIME);
+
         userQuery.findInBackground(new FindCallback<User>() {
             @Override
             public void done(List<User> list, AVException e) {
@@ -45,17 +49,15 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
         });
     }
 
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         User user = (User) parent.getItemAtPosition(position);
 
         if (user != null) {
-            Log.d(TAG, "onItemClick: " + user.getClass().getSimpleName());
             Intent intent = new Intent(this, PersonalActivity.class);
-            intent.putExtra(PersonalActivity.USERID, user.getObjectId());
-            intent.putExtra("userdata", user);
+//            intent.putExtra(PersonalActivity.USERID, user.getObjectId());
+            intent.putExtra(PersonalActivity.USER, user);
             startActivity(intent);
         }
     }

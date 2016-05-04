@@ -47,8 +47,7 @@ public class User extends AVUser {
 
     //在线用户可以根据登录时间来判断
     //同时也是用户的冒泡时间
-    public static final String LOGIN_TIME = "login_time";
-
+    public static final String BUBBLE_TIME = "bubble_time";
 
     //父类会再次调用子类的put, 导致stackoverflow, 所以该方法暂时不行
 

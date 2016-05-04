@@ -77,9 +77,6 @@ public class EditActivity extends BaseActivity {
 
     }
 
-
-
-
 //    private void init() {
 //        map = new HashMap<>();
 //
