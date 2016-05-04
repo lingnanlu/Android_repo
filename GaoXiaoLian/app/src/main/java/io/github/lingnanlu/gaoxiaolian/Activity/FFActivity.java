@@ -1,7 +1,6 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,15 +9,12 @@ import android.widget.ListView;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFriendship;
 import com.avos.avoscloud.AVFriendshipQuery;
-import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.callback.AVFriendshipCallback;
 
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
@@ -59,7 +55,7 @@ public class FFActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ff);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
 
         user = GaoXiaoLian.getUser();
         userListAdapter = new UserListAdapter(this);
@@ -86,4 +82,6 @@ public class FFActivity extends BaseActivity {
         });
 
     }
+
+
 }

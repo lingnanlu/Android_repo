@@ -16,7 +16,6 @@ import com.avos.avoscloud.FollowCallback;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
@@ -80,7 +79,7 @@ public class PersonalActivity extends BaseActivity {
     @OnClick(R.id.bt_send_private_msg)
     public void onSendPrivateMsgClick(View view) {
         Intent intent = new Intent(PersonalActivity.this, ChatActivity.class);
-        //intent.putExtra("user", user);
+        //intent.putExtra("self", self);
         startActivity(intent);
     }
 
@@ -90,7 +89,7 @@ public class PersonalActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
-        ButterKnife.bind(this);
+       // ButterKnife.bind(this);
 
         //hide all buttons
         btFollow.setVisibility(View.GONE);
@@ -110,7 +109,7 @@ public class PersonalActivity extends BaseActivity {
         } else {
 
             //User并没有创建自己的CREATOR, 所以传递Parcelable时会出错
-            //user = intent.getParcelableExtra("userdata");
+            //self = intent.getParcelableExtra("userdata");
 
             user = intent.getParcelableExtra("userdata");
 
@@ -146,7 +145,6 @@ public class PersonalActivity extends BaseActivity {
 
     }
 
-
     private void fillTextViewByUser(User user) {
 
         if (user != null) {
@@ -163,7 +161,7 @@ public class PersonalActivity extends BaseActivity {
                 txPrivate.setText(user.getString(User.PRIVATE));
             }
         } else {
-            Log.d(TAG, "fillTextViewByUser: user is null");
+            Log.d(TAG, "fillTextViewByUser: self is null");
 
         }
 

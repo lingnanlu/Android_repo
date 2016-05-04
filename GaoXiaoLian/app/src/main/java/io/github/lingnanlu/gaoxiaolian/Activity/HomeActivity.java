@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
@@ -20,6 +19,7 @@ public class HomeActivity extends BaseActivity {
     @Bind(R.id.bt_edit) Button btEdit;
     @Bind(R.id.bt_personal) Button btPersonal;
     @Bind(R.id.bt_follower_followee) Button btFollowerFollowee;
+    @Bind(R.id.bt_private_msg) Button btPrivateMsg;
 
     @OnClick(R.id.bt_online)
     public void onOnlineClick(View view) {
@@ -43,12 +43,17 @@ public class HomeActivity extends BaseActivity {
         startActivity(FFActivity.class);
     }
 
+    @OnClick(R.id.bt_private_msg)
+    public void onPrivateMsg(View view) {
+        startActivity(ConversationsActivity.class);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+
+       // ButterKnife.bind(this);
 
         User user = GaoXiaoLian.getUser();
 
@@ -56,4 +61,6 @@ public class HomeActivity extends BaseActivity {
 
 
     }
+
+
 }

@@ -30,7 +30,7 @@ public class ChatActivity extends BaseActivity {
         setContentView(R.layout.activity_conversation);
 
         fgChat = (ChatFragment) getSupportFragmentManager().findFragmentById(R.id.fg_chat);
-        user = getIntent().getParcelableExtra("user");
+        user = getIntent().getParcelableExtra("self");
 
         setTitle(user.getUsername());
 
@@ -74,6 +74,8 @@ public class ChatActivity extends BaseActivity {
         });
 
     }
+
+
 
 
 }

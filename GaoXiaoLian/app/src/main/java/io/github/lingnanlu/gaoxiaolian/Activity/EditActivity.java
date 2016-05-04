@@ -10,7 +10,6 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
@@ -18,9 +17,7 @@ import io.github.lingnanlu.gaoxiaolian.User;
 
 public class EditActivity extends BaseActivity {
 
-
     User user;
-
 
     @Bind(R.id.et_name) EditText etName;
     @Bind(R.id.et_sn) EditText etSN;
@@ -71,7 +68,7 @@ public class EditActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
 
 
         user = GaoXiaoLian.getUser();
@@ -79,6 +76,8 @@ public class EditActivity extends BaseActivity {
         fillEditText();
 
     }
+
+
 
 
 //    private void init() {
