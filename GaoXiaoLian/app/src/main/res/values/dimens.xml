@@ -41,11 +41,6 @@
 
 
 
-
-
-
-
-
     <!--logo-->
     <dimen name="logo_size">100dp</dimen>
     <dimen name="logo_border_size">2dp</dimen>
@@ -55,7 +50,7 @@
     <dimen name="padding_huge">60dp</dimen>
     <dimen name="padding_normal">40dp</dimen>
     <dimen name="padding_small">20dp</dimen>
-    <dimen name="padding_tiny">10dp</dimen>
+    <dimen name="padding_tiny">5dp</dimen>
     <!--space between views-->
     <dimen name="spacing_huge">25dp</dimen>
     <dimen name="spacing_large">20dp</dimen>
@@ -69,4 +64,7 @@
     <dimen name="font_normal">20dp</dimen>
     <dimen name="font_small">10dp</dimen>
     <dimen name="font_tiny">5dp</dimen>
+
+
+
 </resources>

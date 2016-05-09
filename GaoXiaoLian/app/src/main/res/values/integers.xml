@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--multiline number-->
+    <integer name="multiline_normal">4</integer>
+    <integer name="multiline_less">2</integer>
+    <integer name="multiline_more">6</integer>
+</resources>

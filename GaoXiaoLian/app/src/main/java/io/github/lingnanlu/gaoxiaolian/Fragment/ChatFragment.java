@@ -23,7 +23,7 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 import io.github.lingnanlu.gaoxiaolian.Event.ImTypeMessageEvent;
 import io.github.lingnanlu.gaoxiaolian.Event.InputBottomBarTextEvent;
-import io.github.lingnanlu.gaoxiaolian.InputBottomBar;
+import io.github.lingnanlu.gaoxiaolian.view.InputBottomBar;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.adapter.MessageListAdapter;
 

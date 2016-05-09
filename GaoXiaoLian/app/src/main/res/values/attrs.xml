@@ -9,4 +9,10 @@
         <attr name="metaButtonBarButtonStyle" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="LabelledEditText">
+        <attr name="headerBackground" format="reference|string" />
+        <attr name="headerText" format="reference|string" />
+        <attr name="headerPadding" format="reference|dimension" />
+    </declare-styleable>
+
 </resources>

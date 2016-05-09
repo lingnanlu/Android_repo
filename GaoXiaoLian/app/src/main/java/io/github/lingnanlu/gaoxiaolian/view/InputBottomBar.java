@@ -1,4 +1,4 @@
-package io.github.lingnanlu.gaoxiaolian;
+package io.github.lingnanlu.gaoxiaolian.view;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import de.greenrobot.event.EventBus;
 import io.github.lingnanlu.gaoxiaolian.Event.InputBottomBarEvent;
 import io.github.lingnanlu.gaoxiaolian.Event.InputBottomBarTextEvent;
+import io.github.lingnanlu.gaoxiaolian.R;
 
 /**
  * Created by rico on 4/27/2016.
