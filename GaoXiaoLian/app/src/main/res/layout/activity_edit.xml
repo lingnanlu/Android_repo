@@ -5,73 +5,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="io.github.lingnanlu.gaoxiaolian.Activity.EditActivity"
     android:orientation="vertical"
     >
 
-    <EditText
-        android:id="@+id/et_name"
-        android:hint="nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <include layout="@layout/toolbar" />
 
-    <EditText
-        android:id="@+id/et_sn"
-        android:hint="sn"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_college"
-        android:hint="college"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_small"
+            >
+
+            <!--base info-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_base_info"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textSize="@dimen/font_normal"
+                />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:hint="@string/hint_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_sn"
+                android:hint="@string/hint_school_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_college"
+                android:hint="@string/hint_college"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_height"
+                android:hint="@string/hint_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--interest -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_interest"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--motto-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_motto"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_motto"
+                android:hint="@string/hint_motto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--brief-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_brief"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_brief"
+                android:hint="@string/hint_brief"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
-    <EditText
-        android:id="@+id/et_height"
-        android:hint="height"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <!--contact-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_contact"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
 
-    <EditText
-        android:id="@+id/et_interest"
-        android:hint="interest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/et_contact"
+                android:hint="@string/hint_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/et_motto"
-        android:hint="motto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <!--private -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_private"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
 
-    <EditText
-        android:id="@+id/et_brief"
-        android:hint="brief"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/et_private"
+                android:hint="@string/hint_private"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/et_contact"
-        android:hint="contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/bt_commit"
+                android:text="@string/button_commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/et_private"
-        android:hint="private"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 
-    <Button
-        android:id="@+id/bt_commit"
-        android:text="提交修改"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

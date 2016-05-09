@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GaoXiaoLian</string>
+    <string name="app_name">高校之恋</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -12,4 +12,26 @@
     <string name="school">school</string>
     <string name="sex">sex</string>
     <string name="college">college</string>
+
+    <!--hint-->
+    <string name="hint_base_info">基本信息</string>
+    <string name="hint_email">请输入邮箱</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="hint_forget_the_password">Forget the password?</string>
+    <string name="hint_name">请输入用户名</string>
+    <string name="hint_school_number">请输入学号</string>
+    <string name="hint_college">请输入学院</string>
+    <string name="hint_height">请输入身高</string>
+    <string name="hint_interest">兴趣爱好</string>
+    <string name="hint_motto">个人宣言</string>
+    <string name="hint_brief">个人简介</string>
+    <string name="hint_contact">联系方式</string>
+    <string name="hint_private">私人信息</string>
+
+
+    <!--button text-->
+    <string name="button_sign_in">Sign In</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="button_register">Register</string>
+    <string name="button_commit">Commit</string>
 </resources>
