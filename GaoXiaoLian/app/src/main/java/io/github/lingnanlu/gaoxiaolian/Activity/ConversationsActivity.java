@@ -1,6 +1,7 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -29,6 +30,9 @@ public class ConversationsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_message);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         self = GaoXiaoLian.getUser();
         AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();

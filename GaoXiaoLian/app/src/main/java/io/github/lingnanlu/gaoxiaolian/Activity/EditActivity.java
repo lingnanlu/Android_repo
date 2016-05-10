@@ -1,6 +1,7 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,8 +69,8 @@ public class EditActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        //ButterKnife.bind(this);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         user = GaoXiaoLian.getUser();
 

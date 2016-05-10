@@ -23,7 +23,6 @@ public class ChatActivity extends BaseActivity {
     AVUser user;
     ChatFragment fgChat;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_follower"
+        android:title="我的粉丝"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_followee"
+        android:title="我的关注"
+        app:showAsAction="never"/>
+
+</menu>

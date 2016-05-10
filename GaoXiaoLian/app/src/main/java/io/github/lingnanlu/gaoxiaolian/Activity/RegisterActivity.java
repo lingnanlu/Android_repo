@@ -1,6 +1,8 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,16 +77,9 @@ public class RegisterActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
 
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
         self = GaoXiaoLian.getUser();
-
-//        schools = getResources().getStringArray(R.array.school);
-//        sex = getResources().getStringArray(R.array.sex);
-//        status = getResources().getStringArray(R.array.status);
-//
-//        //default value
-//        self.put(User.SCHOOL, schools[0]);
-//        self.put(User.SEX, sex[0]);
-//        self.put(User.STATUS,status[0]);
 
         self.put(User.SCHOOL, spSchool.getSelectedItem().toString());
         self.put(User.SEX, spSex.getSelectedItem().toString());

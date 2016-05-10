@@ -2,7 +2,10 @@ package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -30,34 +33,37 @@ public class FFActivity extends BaseActivity implements AdapterView.OnItemClickL
     UserListAdapter userListAdapter;
     User user;
 
-    @Bind(R.id.bt_follower)
-    Button btFollower;
-
-    @Bind(R.id.bt_followee)
-    Button btFollowee;
+//    @Bind(R.id.bt_follower)
+//    Button btFollower;
+//
+//    @Bind(R.id.bt_followee)
+//    Button btFollowee;
 
     @Bind(R.id.lv_users)
     ListView lvUsers;
-
-    @OnClick(R.id.bt_follower)
-    public void onFollowerClick(View view) {
-
-        userListAdapter.setUsers(followers);
-        lvUsers.setAdapter(userListAdapter);
-
-    }
-
-    @OnClick(R.id.bt_followee)
-    public void onFolloweeClick(View view) {
-        userListAdapter.setUsers(followees);
-        lvUsers.setAdapter(userListAdapter);
-    }
+//
+//    @OnClick(R.id.bt_follower)
+//    public void onFollowerClick(View view) {
+//
+//        userListAdapter.setUsers(followers);
+//        lvUsers.setAdapter(userListAdapter);
+//
+//    }
+//
+//    @OnClick(R.id.bt_followee)
+//    public void onFolloweeClick(View view) {
+//        userListAdapter.setUsers(followees);
+//        lvUsers.setAdapter(userListAdapter);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ff);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         user = GaoXiaoLian.getUser();
         userListAdapter = new UserListAdapter(this);
@@ -76,7 +82,7 @@ public class FFActivity extends BaseActivity implements AdapterView.OnItemClickL
                     followees = avFriendship.getFollowees();
                     Log.d(TAG, "done: followers " + followers);
                     Log.d(TAG, "done: followee " + followees);
-                    btFollower.performClick();
+                    //btFollower.performClick();
                 } else {
                     Log.d(TAG, "done: friendship get failed");
                 }
@@ -97,5 +103,30 @@ public class FFActivity extends BaseActivity implements AdapterView.OnItemClickL
             intent.putExtra(PersonalActivity.USER, user);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ff, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_follower:
+                Log.d(TAG, "onOptionsItemSelected: follower clicked");
+                userListAdapter.setUsers(followers);
+                lvUsers.setAdapter(userListAdapter);
+                break;
+            case R.id.action_followee:
+                Log.d(TAG, "onOptionsItemSelected: followee clicked");
+                userListAdapter.setUsers(followees);
+                lvUsers.setAdapter(userListAdapter);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

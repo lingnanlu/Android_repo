@@ -2,7 +2,10 @@ package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,6 +33,9 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_line);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         AVQuery<User> userQuery = User.getUserQuery(User.class);
         userQuery.whereNotEqualTo(User.OBJECT_ID, GaoXiaoLian.getUser().getObjectId());
@@ -62,6 +68,24 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sex, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_male:
+                Log.d(TAG, "onOptionsItemSelected: male clicked");
+                break;
+            case R.id.action_female:
+                Log.d(TAG, "onOptionsItemSelected: female clicked");
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

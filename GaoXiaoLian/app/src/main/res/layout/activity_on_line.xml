@@ -10,7 +10,6 @@
 
     <include layout="@layout/toolbar"/>
 
-
     <ListView
         android:id="@+id/list_online_users"
         android:layout_width="match_parent"

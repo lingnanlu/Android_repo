@@ -10,24 +10,24 @@
 
     <include layout="@layout/toolbar"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Button
-            android:id="@+id/bt_follower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我关注的"
-            />
-        <Button
-            android:id="@+id/bt_followee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的粉丝"
-            />
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--&gt;-->
+        <!--<Button-->
+            <!--android:id="@+id/bt_follower"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="我关注的"-->
+            <!--/>-->
+        <!--<Button-->
+            <!--android:id="@+id/bt_followee"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="我的粉丝"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
 
 
     <ListView

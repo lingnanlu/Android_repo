@@ -2,6 +2,7 @@ package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -96,6 +97,9 @@ public class PersonalActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         //hide all buttons
         btFollow.setVisibility(View.GONE);

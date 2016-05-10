@@ -24,13 +24,57 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.HomeActivity"></activity>
-        <activity android:name=".Activity.RegisterActivity"></activity>
-        <activity android:name=".Activity.PersonalActivity"></activity>
-        <activity android:name=".Activity.EditActivity"></activity>
-        <activity android:name=".Activity.FFActivity"></activity>
-        <activity android:name=".Activity.OnlineActivity"></activity>
+
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:label="@string/login"
+            >
+
+        </activity>
+
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:label="@string/home"
+            ></activity>
+
+        <activity
+
+            android:name=".Activity.RegisterActivity"
+            android:label="@string/register"
+            android:parentActivityName=".Activity.LoginActivity"
+
+            >
+        </activity>
+
+
+        <activity
+
+            android:name=".Activity.PersonalActivity"
+            android:label="@string/personal_info"
+
+            >
+
+        </activity>
+
+        <activity
+            android:name=".Activity.EditActivity"
+            android:label="@string/edit"
+            android:parentActivityName=".Activity.HomeActivity"
+            ></activity>
+
+        <activity
+            android:name=".Activity.FFActivity"
+            android:label="@string/follower_followee"
+            android:parentActivityName=".Activity.HomeActivity"
+            ></activity>
+
+        <activity
+            android:name=".Activity.OnlineActivity"
+            android:label="@string/online"
+            android:parentActivityName=".Activity.HomeActivity"
+            ></activity>
+
+
         <activity android:name=".Activity.ConversationsActivity"></activity>
         <activity android:name=".Activity.ChatActivity"></activity>
         <activity android:name=".Activity.MatchResultActivity"></activity>
