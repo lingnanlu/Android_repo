@@ -3,7 +3,6 @@
     android:id="@+id/edit_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="io.github.lingnanlu.gaoxiaolian.Activity.EditActivity"
@@ -12,158 +11,158 @@
 
     <include layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_small"
-        >
-
-        <!--base info-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_base_info"
-            android:layout_marginBottom="@dimen/spacing_small"
-            android:textSize="@dimen/font_normal"
-            />
-
-        <EditText
-            android:id="@+id/et_name"
-            android:hint="@string/hint_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/et_sn"
-            android:hint="@string/hint_school_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/et_college"
-            android:hint="@string/hint_college"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/et_height"
-            android:hint="@string/hint_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <!--interest -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_interest"
-            android:textSize="@dimen/font_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
-
-        <EditText
-            android:id="@+id/et_interest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="@integer/multiline_normal"
-            android:background="@color/gray_light"
-            android:gravity="left|top"
-            />
-
-        <!--motto-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_motto"
-            android:textSize="@dimen/font_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
-
-        <EditText
-            android:id="@+id/et_motto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="@integer/multiline_less"
-            android:background="@color/gray_light"
-            android:gravity="left|top"
-            />
-
-
-        <!--brief-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_brief"
-            android:textSize="@dimen/font_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
-
-        <EditText
-            android:id="@+id/et_brief"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="@integer/multiline_more"
-            android:background="@color/gray_light"
-            android:gravity="left|top"
-            />
-
-
-        <!--contact-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_contact"
-            android:textSize="@dimen/font_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
-
-        <EditText
-            android:id="@+id/et_contact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="@integer/multiline_less"
-            android:background="@color/gray_light"
-            android:gravity="left|top"
-            />
-
-        <!--private -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_private"
-            android:textSize="@dimen/font_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
-
-        <EditText
-            android:id="@+id/et_private"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="@integer/multiline_normal"
-            android:background="@color/gray_light"
-            android:gravity="left|top"
-            />
-
-        <Button
-            android:id="@+id/bt_commit"
-            android:text="@string/button_commit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:textColor="@color/white"
-            />
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_small"
+            >
+
+            <!--base info-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_base_info"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textSize="@dimen/font_normal"
+                />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:hint="@string/hint_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_sn"
+                android:hint="@string/hint_school_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_college"
+                android:hint="@string/hint_college"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_height"
+                android:hint="@string/hint_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--interest -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_interest"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="@integer/multiline_normal"
+                android:background="@color/gray_light"
+                android:gravity="left|top"
+                />
+
+            <!--motto-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_motto"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_motto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="@integer/multiline_less"
+                android:background="@color/gray_light"
+                android:gravity="left|top"
+                />
+
+
+            <!--brief-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_brief"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_brief"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="@integer/multiline_more"
+                android:background="@color/gray_light"
+                android:gravity="left|top"
+                />
+
+
+            <!--contact-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_contact"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="@integer/multiline_less"
+                android:background="@color/gray_light"
+                android:gravity="left|top"
+                />
+
+            <!--private -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_private"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+            <EditText
+                android:id="@+id/et_private"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="@integer/multiline_normal"
+                android:background="@color/gray_light"
+                android:gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/bt_commit"
+                android:text="@string/button_commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
 
     </ScrollView>
 

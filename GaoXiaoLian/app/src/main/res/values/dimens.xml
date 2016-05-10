@@ -43,7 +43,13 @@
 
     <!--logo-->
     <dimen name="logo_size">100dp</dimen>
-    <dimen name="logo_border_size">2dp</dimen>
+    <dimen name="border_size">2dp</dimen>
+
+    <!--header-->
+    <dimen name="header_size">90dp</dimen>
+
+    <!--avatar-->
+    <dimen name="avater_size">72dp</dimen>
 
     <!--padding-->
     <dimen name="padding_super_huge">80dp</dimen>
@@ -59,11 +65,11 @@
     <dimen name="spacing_tiny">5dp</dimen>
 
     <!--font size -->
-    <dimen name="font_huge">40dp</dimen>
-    <dimen name="font_large">30dp</dimen>
-    <dimen name="font_normal">20dp</dimen>
-    <dimen name="font_small">10dp</dimen>
-    <dimen name="font_tiny">5dp</dimen>
+    <dimen name="font_huge">40sp</dimen>
+    <dimen name="font_large">30sp</dimen>
+    <dimen name="font_normal">20sp</dimen>
+    <dimen name="font_small">15sp</dimen>
+    <dimen name="font_tiny">10sp</dimen>
 
 
 

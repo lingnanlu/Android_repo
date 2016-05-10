@@ -1,97 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.HomeActivity">
+    tools:context=".Activity.HomeActivity"
+    >
 
-    <TextView
-        android:id="@+id/tx_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="无名式"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp" />
+    <include layout="@layout/toolbar"/>
 
-    <Button
+    <RelativeLayout
+
+        android:padding="@dimen/padding_normal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Online"
-        android:id="@+id/bt_online"
-        android:layout_below="@+id/tx_name"
-        android:layout_alignLeft="@+id/bt_edit"
-        android:layout_alignStart="@+id/bt_edit"
-        android:layout_marginTop="112dp" />
+        android:layout_height="match_parent"
+        >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="个人主页"
-        android:id="@+id/bt_personal"
-        android:layout_gravity="right"
-        android:layout_below="@+id/bt_follower_followee"
-        android:layout_alignLeft="@+id/bt_follower_followee"
-        android:layout_alignStart="@+id/bt_follower_followee"
-        android:layout_alignRight="@+id/bt_follower_followee"
-        android:layout_alignEnd="@+id/bt_follower_followee" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/header_size"
+            android:layout_height="@dimen/header_size"
+            android:src="@drawable/avatar_ph"
+            app:civ_border_color="@color/colorPrimaryLighter"
+            app:civ_border_width="@dimen/border_size"
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="编辑资料"
-        android:id="@+id/bt_edit"
-        android:layout_below="@+id/button9"
-        android:layout_alignLeft="@+id/button9"
-        android:layout_alignStart="@+id/button9"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:id="@+id/tx_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_head"
+            android:layout_alignTop="@id/iv_head"
+            android:layout_alignBottom="@id/iv_head"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_normal"
+            tools:text="无名式"
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="关注-粉丝"
-        android:id="@+id/bt_follower_followee"
-        android:layout_below="@+id/bt_private_msg"
-        android:layout_alignLeft="@+id/bt_private_msg"
-        android:layout_alignStart="@+id/bt_private_msg"
-        android:layout_alignRight="@+id/bt_private_msg"
-        android:layout_alignEnd="@+id/bt_private_msg" />
+        <Button
+            android:id="@+id/bt_online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_head"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="@string/button_online"
+            />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="私信系统"
-        android:id="@+id/bt_private_msg"
-        android:layout_alignTop="@+id/bt_online"
-        android:layout_toLeftOf="@+id/bt_match"
-        android:layout_toStartOf="@+id/bt_match" />
+        <Button
+            android:id="@+id/bt_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_online"
+            android:text="@string/button_info"
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="已推嘉宾"
-        android:id="@+id/button9"
-        android:layout_below="@+id/bt_online"
-        android:layout_toRightOf="@+id/bt_match"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:id="@+id/bt_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_personal"
+            android:text="@string/button_edit"
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="匹配系统"
-        android:id="@+id/bt_match"
-        android:background="#4063ff"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/bt_edit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        <Button
+            android:id="@+id/bt_follower_followee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_edit"
+            android:text="@string/button_ff"
+            />
+
+        <Button
+            android:id="@+id/bt_private_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_follower_followee"
+            android:text="@string/button_private_msg"
+            />
+
+        <Button
+            android:id="@+id/bt_guests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_private_msg"
+            android:text="@string/button_guests"
+            />
+
+        <Button
+            android:id="@+id/bt_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_below="@id/bt_guests"
+            android:layout_alignParentLeft="true"
+            android:text="@string/button_match"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/bt_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_guests"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_exit"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
+

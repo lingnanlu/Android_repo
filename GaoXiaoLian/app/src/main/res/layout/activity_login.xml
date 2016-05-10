@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/avatar_ph"
             app:civ_border_color="@color/colorPrimary"
-            app:civ_border_width="@dimen/logo_border_size" />
+            app:civ_border_width="@dimen/border_size" />
 
         <TextView
             android:id="@+id/tv_app_name"

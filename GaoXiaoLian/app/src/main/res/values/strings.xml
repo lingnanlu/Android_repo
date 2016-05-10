@@ -33,5 +33,18 @@
     <string name="button_sign_in">Sign In</string>
     <string name="button_sign_up">Sign Up</string>
     <string name="button_register">Register</string>
-    <string name="button_commit">Commit</string>
+    <string name="button_online">Online</string>
+    <string name="button_edit">编辑资料</string>
+    <string name="button_commit">提交修改</string>
+    <string name="button_private_msg">私信系统</string>
+    <string name="button_info">个人主页</string>
+    <string name="button_ff">关注-粉丝</string>
+    <string name="button_guests">已推嘉宾</string>
+    <string name="button_match">匹配系统</string>
+    <string name="button_exit">退出</string>
+    <string name="button_follow">关注</string>
+    <string name="button_unfollow">取消关注</string>
+    <string name="button_send_msg">发送私信</string>
+
+
 </resources>
