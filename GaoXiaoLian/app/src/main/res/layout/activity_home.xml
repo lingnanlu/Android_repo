@@ -27,19 +27,42 @@
             app:civ_border_width="@dimen/border_size"
             />
 
-        <TextView
-            android:id="@+id/tx_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
             android:layout_toRightOf="@id/iv_head"
             android:layout_alignTop="@id/iv_head"
             android:layout_alignBottom="@id/iv_head"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_normal"
-            tools:text="无名式"
-            />
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tx_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                tools:text="无名式"
+                />
+
+            <TextView
+                android:id="@+id/tv_visit_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="访客数:430"
+                />
+
+            <TextView
+                android:id="@+id/tv_like_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="获赞数:3"
+                />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/bt_online"

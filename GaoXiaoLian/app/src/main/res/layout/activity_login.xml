@@ -11,8 +11,6 @@
 
     <include layout="@layout/toolbar" />
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,6 +45,7 @@
             android:layout_below="@id/tv_app_name"
             android:layout_marginTop="@dimen/spacing_normal"
             android:hint="@string/hint_name"
+            android:text="rabbit"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -57,6 +56,7 @@
             android:layout_marginBottom="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_small"
             android:hint="@string/hint_password"
+            android:text="198908"
             android:inputType="textPassword" />
 
         <Button

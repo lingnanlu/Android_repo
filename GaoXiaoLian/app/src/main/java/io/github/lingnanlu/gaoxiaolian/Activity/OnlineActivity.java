@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 import io.github.lingnanlu.gaoxiaolian.adapter.UserListAdapter;
 
 // TODO: 2016/5/4 online还未实现, SDK并没有提供得到在线用户的接口

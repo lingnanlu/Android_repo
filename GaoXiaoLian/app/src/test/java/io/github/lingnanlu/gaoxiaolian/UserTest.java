@@ -2,7 +2,7 @@ package io.github.lingnanlu.gaoxiaolian;
 
 import org.junit.Before;
 
-import static org.junit.Assert.*;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 /**
  * Created by rico on 5/2/2016.

@@ -11,159 +11,187 @@
 
     <include layout="@layout/toolbar"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/padding_small"
-        android:orientation="vertical"
-        >
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_head"
-            android:layout_width="@dimen/avater_size"
-            android:layout_height="@dimen/avater_size"
-            android:src="@drawable/avatar_ph"
-            app:civ_border_color="@color/gray_light"
-            app:civ_border_width="@dimen/border_size"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <TextView
-            android:id="@+id/tx_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Rabbit"
-            android:textSize="@dimen/font_normal"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <TextView
-            android:id="@+id/tx_school"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            tools:text="华中科技大学"
-            android:textColor="@color/gray_dark"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <TextView
-            android:id="@+id/tx_sn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            tools:text="M201472738"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/hint_interest"
-            android:textSize="@dimen/font_small"
-            />
-
-        <TextView
-            android:id="@+id/tx_interest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_small"
-            android:text="@string/hint_motto"
-            android:layout_marginTop="@dimen/spacing_small"
-            />
-
-        <TextView
-            android:id="@+id/tx_motto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:textSize="@dimen/font_small"
-            android:text="@string/hint_brief"
-            />
-
-        <TextView
-            android:id="@+id/tx_brief"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_small"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:text="@string/hint_contact"
-            />
-
-        <TextView
-            android:id="@+id/tx_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:textSize="@dimen/font_small"
-            android:text="@string/hint_private"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:id="@+id/tx_private"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_small"
+            android:orientation="vertical"
             >
 
-            <Button
-                android:id="@+id/bt_follow"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/avater_size"
+                android:layout_height="@dimen/avater_size"
+                android:src="@drawable/avatar_ph"
+                app:civ_border_color="@color/gray_light"
+                app:civ_border_width="@dimen/border_size"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/tx_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_follow"
+                tools:text="Rabbit"
+                android:textSize="@dimen/font_normal"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/tx_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                tools:text="华中科技大学"
+                android:textColor="@color/gray_dark"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/tx_sn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:text="M201472738"
+                />
+
+            <TextView
+                android:id="@+id/tv_sign_up_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:text="安家:2016-02-05"
+                />
+
+            <TextView
+                android:id="@+id/tv_bubble_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:text="冒泡:2016-05-10"
                 />
 
             <Button
-                android:id="@+id/bt_send_private_msg"
+                android:id="@+id/bt_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_send_msg"
-                 />
-
-            <Button
-                android:id="@+id/bt_unfollow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_unfollow"
-                 />
-
-            <Button
-                android:id="@+id/bt_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_edit"
+                android:layout_gravity="center_horizontal"
+                tools:text="42个赞"
                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/hint_interest"
+                android:textSize="@dimen/font_small"
+                />
+
+            <TextView
+                android:id="@+id/tx_interest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_small"
+                android:text="@string/hint_motto"
+                android:layout_marginTop="@dimen/spacing_small"
+                />
+
+            <TextView
+                android:id="@+id/tx_motto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textSize="@dimen/font_small"
+                android:text="@string/hint_brief"
+                />
+
+            <TextView
+                android:id="@+id/tx_brief"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/hint_contact"
+                />
+
+            <TextView
+                android:id="@+id/tx_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:textSize="@dimen/font_small"
+                android:text="@string/hint_private"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/tx_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/bt_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_follow"
+                    />
+
+                <Button
+                    android:id="@+id/bt_send_private_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_send_msg"
+                    />
+
+                <Button
+                    android:id="@+id/bt_unfollow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_unfollow"
+                    />
+
+                <Button
+                    android:id="@+id/bt_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_edit"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </LinearLayout>

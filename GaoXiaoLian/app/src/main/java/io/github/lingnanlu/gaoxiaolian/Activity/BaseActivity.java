@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+
+import com.avos.avoscloud.AVException;
 
 import butterknife.ButterKnife;
 import io.github.lingnanlu.gaoxiaolian.R;
@@ -34,6 +37,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         //要在setContentView之后才能调用
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    public boolean filter(AVException e) {
+        if(e == null) {
+            Log.d(TAG, "success");
+            return true;
+        } else {
+            Log.d(TAG, "failed " + e.toString());
+            return false;
+        }
     }
 
 }

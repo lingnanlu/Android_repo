@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.avos.avoscloud.AVException;
@@ -20,10 +19,9 @@ import com.avos.avoscloud.callback.AVFriendshipCallback;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 import io.github.lingnanlu.gaoxiaolian.adapter.UserListAdapter;
 
 public class FFActivity extends BaseActivity implements AdapterView.OnItemClickListener{

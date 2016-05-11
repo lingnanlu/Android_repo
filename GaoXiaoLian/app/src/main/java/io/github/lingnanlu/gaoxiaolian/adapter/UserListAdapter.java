@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 /**
  * Created by rico on 5/3/2016.

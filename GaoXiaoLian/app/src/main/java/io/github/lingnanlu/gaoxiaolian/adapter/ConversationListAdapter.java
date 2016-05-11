@@ -18,7 +18,7 @@ import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 /**
  * Created by Administrator on 2016/5/4.

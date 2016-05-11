@@ -3,6 +3,7 @@ package io.github.lingnanlu.gaoxiaolian;
 import android.app.Application;
 
 import com.avos.avoscloud.AVOSCloud;
+import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMMessageManager;
@@ -10,6 +11,9 @@ import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.github.lingnanlu.gaoxiaolian.POJO.ExternalData;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 /**
  * Created by rico on 4/25/2016.
@@ -26,6 +30,7 @@ public class GaoXiaoLian extends Application {
         super.onCreate();
 
         AVUser.alwaysUseSubUserClass(User.class);
+        AVObject.registerSubclass(ExternalData.class);
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
 
         AVIMMessageManager.registerMessageHandler(AVIMTypedMessage.class, new MessageHandler(this));
@@ -38,9 +43,6 @@ public class GaoXiaoLian extends Application {
 
     public static User getUser() {
 
-        if (user == null) {
-            user = new User();
-        }
         return user;
     }
 

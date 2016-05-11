@@ -2,7 +2,6 @@ package io.github.lingnanlu.gaoxiaolian.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,17 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVRelation;
+import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
+import io.github.lingnanlu.gaoxiaolian.POJO.ExternalData;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 public class RegisterActivity extends BaseActivity{
 
-    User self;
+    User user;
 
     @Bind(R.id.bt_register)
     Button btRegister;
@@ -52,23 +54,39 @@ public class RegisterActivity extends BaseActivity{
     @OnClick(R.id.bt_register)
     public void onRegisterClick(View view) {
 
-        self.setUsername(etName.getText().toString());
-        self.setPassword(etPassword.getText().toString());
-        self.setEmail(etEmail.getText().toString());
-        self.put(User.SN, etSN.getText().toString());
 
-        self.signUpInBackground(new SignUpCallback() {
+        user.put(User.SCHOOL, spSchool.getSelectedItem().toString());
+        user.put(User.SEX, spSex.getSelectedItem().toString());
+        user.put(User.STATUS, spStatus.getSelectedItem().toString());
+
+        user.setUsername(etName.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        user.setEmail(etEmail.getText().toString());
+        user.put(User.SN, etSN.getText().toString());
+
+        final ExternalData data = new ExternalData();
+        data.put(ExternalData.VISIT_NUM, 0);
+        data.put(ExternalData.LIKE_NUM, 0);
+        data.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
-                if (e == null) {
-                    startActivity(LoginActivity.class);
-                    finish();
-                } else {
-                    Log.d(TAG, "done: " + e.toString());
-                    Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();
-                }
+               if(filter(e)) {
+                   AVRelation<ExternalData> relation = user.getRelation(User.EXTERNAL_DATA);
+                   relation.add(data);
+                   user.signUpInBackground(new SignUpCallback() {
+                       @Override
+                       public void done(AVException e) {
+                           if(filter(e)) {
+                               startActivity(LoginActivity.class);
+                               finish();
+                           }
+                       }
+                   });
+               }
             }
         });
+
+
     }
 
     @Override
@@ -79,11 +97,8 @@ public class RegisterActivity extends BaseActivity{
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        self = GaoXiaoLian.getUser();
 
-        self.put(User.SCHOOL, spSchool.getSelectedItem().toString());
-        self.put(User.SEX, spSex.getSelectedItem().toString());
-        self.put(User.STATUS, spStatus.getSelectedItem().toString());
+        user = new User();
         /*
          * simple_spinner_dropdown_item 指的是弹出后,每一个Item的样式
          * simple_spinner_item 指的是选中某一个Item后, 在spinner中显示的样式
@@ -105,7 +120,7 @@ public class RegisterActivity extends BaseActivity{
                  */
                 Log.d(TAG, "onItemSelected: view " + ((TextView) view).getText());
                 Log.d(TAG, "onItemSelected: parent " + parent.getItemAtPosition(position));
-                self.put(User.SCHOOL, parent.getItemAtPosition(position));
+                user.put(User.SCHOOL, parent.getItemAtPosition(position));
             }
 
             @Override
@@ -118,7 +133,7 @@ public class RegisterActivity extends BaseActivity{
         spSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                self.put(User.SEX, parent.getItemAtPosition(position));
+                user.put(User.SEX, parent.getItemAtPosition(position));
             }
 
             @Override
@@ -132,7 +147,7 @@ public class RegisterActivity extends BaseActivity{
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                self.put(User.STATUS,parent.getItemAtPosition(position));
+                user.put(User.STATUS,parent.getItemAtPosition(position));
             }
 
             @Override

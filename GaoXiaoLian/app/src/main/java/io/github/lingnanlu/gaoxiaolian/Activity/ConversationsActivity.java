@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 import io.github.lingnanlu.gaoxiaolian.adapter.ConversationListAdapter;
 
 public class ConversationsActivity extends BaseActivity {

@@ -1,4 +1,4 @@
-package io.github.lingnanlu.gaoxiaolian;
+package io.github.lingnanlu.gaoxiaolian.POJO;
 
 import android.os.Parcel;
 
@@ -28,7 +28,6 @@ public class User extends AVUser {
 
     public User() {}
 
-
     public static final String SEX = "sex"; //"female", "male"
     public static final String SCHOOL = "school";
     public static final String STATUS = "status"; //"undergraduate", "graduate", "worked"
@@ -42,8 +41,8 @@ public class User extends AVUser {
     public static final String BRIEF = "brief";
     public static final String CONTACT = "contact";
     public static final String PRIVATE = "private";
-    public static final String VISIT_NUM = "visit_num";
-    public static final String LIKE_NUM = "like_num";
+    public static final String EXTERNAL_DATA = "external_data";
+    //public static final String LIKE_NUM = "like_num";
 
     //在线用户可以根据登录时间来判断
     //同时也是用户的冒泡时间

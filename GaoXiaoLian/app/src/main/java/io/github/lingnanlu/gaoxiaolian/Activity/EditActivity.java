@@ -14,7 +14,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.User;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 
 public class EditActivity extends BaseActivity {
 
