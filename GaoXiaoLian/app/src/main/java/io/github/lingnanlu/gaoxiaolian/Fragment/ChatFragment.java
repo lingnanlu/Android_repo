@@ -18,14 +18,17 @@ import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMMessagesQueryCallback;
 import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 import io.github.lingnanlu.gaoxiaolian.Event.ImTypeMessageEvent;
 import io.github.lingnanlu.gaoxiaolian.Event.InputBottomBarTextEvent;
-import io.github.lingnanlu.gaoxiaolian.view.InputBottomBar;
+import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.adapter.MessageListAdapter;
+import io.github.lingnanlu.gaoxiaolian.view.InputBottomBar;
 
 public class ChatFragment extends Fragment {
 
@@ -90,6 +93,9 @@ public class ChatFragment extends Fragment {
         if (conversation != null && event != null) {
             if(!TextUtils.isEmpty(event.content)) {
                 AVIMTextMessage message = new AVIMTextMessage();
+                Map<String, Object> attrs = new HashMap<>();
+                attrs.put("sender", GaoXiaoLian.getUser().getUsername());
+                message.setAttrs(attrs);
                 message.setText(event.content);
                 itemAdapter.addMessage(message);
                 itemAdapter.notifyDataSetChanged();

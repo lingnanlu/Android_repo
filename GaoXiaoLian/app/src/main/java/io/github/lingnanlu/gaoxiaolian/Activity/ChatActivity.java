@@ -1,9 +1,9 @@
 package io.github.lingnanlu.gaoxiaolian.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
@@ -16,11 +16,15 @@ import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.Fragment.ChatFragment;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
+import io.github.lingnanlu.gaoxiaolian.POJO.User;
 import io.github.lingnanlu.gaoxiaolian.R;
 
 public class ChatActivity extends BaseActivity {
 
-    AVUser user;
+    public static final String FROM = "from";
+    public static final String CONV_ID = "conversation_id";
+
+    User user;
     ChatFragment fgChat;
 
     @Override
@@ -29,48 +33,67 @@ public class ChatActivity extends BaseActivity {
         setContentView(R.layout.activity_conversation);
 
         fgChat = (ChatFragment) getSupportFragmentManager().findFragmentById(R.id.fg_chat);
-        user = getIntent().getParcelableExtra("self");
 
-        setTitle(user.getUsername());
+        Intent intent = getIntent();
 
+        String from = intent.getStringExtra(FROM);
 
-        final AVIMClient client = GaoXiaoLian.getClient();
-        AVIMConversationQuery conversationQuery = client.getQuery();
-        conversationQuery.withMembers(Arrays.asList(user.getObjectId()));
-        conversationQuery.findInBackground(new AVIMConversationQueryCallback() {
-            @Override
-            public void done(List<AVIMConversation> list, AVIMException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: conversation query success");
-                    if(list != null && list.size() > 0) {
-                        fgChat.setConversation(list.get(0));
-                    } else {
-                        //创建对话
-                        client.createConversation(
-                                Arrays.asList(user.getObjectId()),
-                                null,
-                                null,
-                                false,
-                                true,
-                                new AVIMConversationCreatedCallback() {
-                                    @Override
-                                    public void done(AVIMConversation conversation, AVIMException e) {
-                                        if (e == null) {
-                                            Log.d(TAG, "done: coversation created success");
-                                            fgChat.setConversation(conversation);
-                                        } else {
-                                            Log.d(TAG, "done: coversation created failed");
+        if (from.equals(PersonalActivity.class.getSimpleName())) {
+
+            user = getIntent().getParcelableExtra(PersonalActivity.USER);
+
+            setTitle(user.getUsername());
+
+            final AVIMClient client = GaoXiaoLian.getClient();
+            AVIMConversationQuery conversationQuery = client.getQuery();
+            conversationQuery.withMembers(Arrays.asList(user.getObjectId()));
+            conversationQuery.findInBackground(new AVIMConversationQueryCallback() {
+                @Override
+                public void done(List<AVIMConversation> list, AVIMException e) {
+                    if (e == null) {
+                        Log.d(TAG, "done: conversation query success");
+                        if(list != null && list.size() > 0) {
+                            fgChat.setConversation(list.get(0));
+                        } else {
+                            //创建对话
+                            client.createConversation(
+                                    Arrays.asList(user.getObjectId()),
+                                    null,
+                                    null,
+                                    false,
+                                    true,
+                                    new AVIMConversationCreatedCallback() {
+                                        @Override
+                                        public void done(AVIMConversation conversation, AVIMException e) {
+                                            if (filter(e)) {
+                                                fgChat.setConversation(conversation);
+                                            }
                                         }
-
                                     }
-                                }
-                        );
+                            );
+                        }
+                    } else {
+                        Log.d(TAG, "done: conversation query failed");
                     }
-                } else {
-                    Log.d(TAG, "done: conversation query failed");
                 }
-            }
-        });
+            });
+
+        } else {
+            String conv_id = intent.getStringExtra(CONV_ID);
+            AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();
+            query.whereEqualTo("objectId",conv_id);
+            query.findInBackground(new AVIMConversationQueryCallback() {
+                @Override
+                public void done(List<AVIMConversation> list, AVIMException e) {
+                    if (filter(e)) {
+                        if (list != null && !list.isEmpty()) {
+                            fgChat.setConversation(list.get(0));
+                        }
+                    }
+                }
+            });
+        }
+
 
     }
 

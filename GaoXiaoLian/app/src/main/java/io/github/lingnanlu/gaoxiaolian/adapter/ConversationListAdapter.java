@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.AVIMMessage;
@@ -17,8 +20,8 @@ import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
-import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.POJO.User;
+import io.github.lingnanlu.gaoxiaolian.R;
 
 /**
  * Created by Administrator on 2016/5/4.
@@ -70,17 +73,36 @@ public class ConversationListAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        List<String> members = convs.get(position).getMembers();
+        AVIMConversation conversation = convs.get(position);
+        List<String> members = conversation.getMembers();
 
-        String name = null;
-        for (String member : members) {
-            if(!member.equals(self.getObjectId())){
-                name = member;
-                break;
-            }
+        String member0 = members.get(0);
+        String member1 = members.get(1);
+
+        String another = null;
+        if (self.getObjectId().equals(member0)) {
+            another = member1;
+        } else {
+            another = member0;
         }
-        viewHolder.name.setText(name);
-        convs.get(position).getLastMessage(new AVIMSingleMessageQueryCallback() {
+
+
+        AVQuery<User> query = new AVQuery<>("_User");
+
+
+        query.getInBackground(another, new GetCallback<User>() {
+            @Override
+            public void done(User user, AVException e) {
+                if (e == null) {
+                    Log.d(TAG, "done: get user success");
+                    viewHolder.name.setText(user.getUsername());
+                } else {
+                    Log.d(TAG, "done: get user failed");
+                }
+            }
+        });
+
+        conversation.getLastMessage(new AVIMSingleMessageQueryCallback() {
             @Override
             public void done(AVIMMessage avimMessage, AVIMException e) {
                 if (e == null) {

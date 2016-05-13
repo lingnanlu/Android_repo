@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 
 import butterknife.Bind;
@@ -27,15 +26,11 @@ public class LeftTextHolder extends CommonViewHolder {
 
     @Override
     public void bindData(Object o) {
-        AVIMMessage message = (AVIMMessage) o;
+        AVIMTextMessage message = (AVIMTextMessage) o;
 
-        String content = "";
-        if (message instanceof AVIMTextMessage) {
-            content = ((AVIMTextMessage)message).getText();
-        }
-
-        this.content.setText(content);
-        this.name.setText(message.getFrom());
+        this.content.setText(message.getText());
+        String name = (String) message.getAttrs().get("sender");
+        this.name.setText(name);
 
     }
 }

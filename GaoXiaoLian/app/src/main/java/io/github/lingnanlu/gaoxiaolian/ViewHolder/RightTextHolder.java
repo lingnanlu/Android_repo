@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 
 import butterknife.Bind;
@@ -31,21 +30,18 @@ public class RightTextHolder extends CommonViewHolder{
 //    protected ImageView errorView;
 
 
-    private AVIMMessage message;
+    private AVIMTextMessage message;
     public RightTextHolder(Context context, ViewGroup root) {
         super(context, root, R.layout.chat_right_text_view);
     }
 
     @Override
     public void bindData(Object o) {
-        message = (AVIMMessage) o;
+        message = (AVIMTextMessage) o;
 
-        String content = "";
-        if (message instanceof AVIMTextMessage) {
-            content = ((AVIMTextMessage)message).getText();
-        }
+        this.content.setText(message.getText());
+        String name = (String) message.getAttrs().get("sender");
+        this.name.setText(name);
 
-        this.content.setText(content);
-        this.name.setText(message.getFrom());
     }
 }

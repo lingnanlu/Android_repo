@@ -13,7 +13,6 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVRelation;
-import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.FollowCallback;
 import com.avos.avoscloud.SaveCallback;
 
@@ -23,8 +22,8 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.POJO.ExternalData;
-import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.POJO.User;
+import io.github.lingnanlu.gaoxiaolian.R;
 /*
  * 该Activity有三种情况
  * 1. 用户本身的信息界面
@@ -113,7 +112,8 @@ public class PersonalActivity extends BaseActivity {
     @OnClick(R.id.bt_send_private_msg)
     public void onSendPrivateMsgClick(View view) {
         Intent intent = new Intent(PersonalActivity.this, ChatActivity.class);
-        //intent.putExtra("self", self);
+        intent.putExtra(USER, user);
+        intent.putExtra(ChatActivity.FROM, this.getClass().getSimpleName());
         startActivity(intent);
     }
 
