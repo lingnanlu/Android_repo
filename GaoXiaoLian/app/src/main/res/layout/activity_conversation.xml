@@ -8,11 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activity.ChatActivity">
+    tools:context=".ui.activity.ChatActivity">
 
     <fragment
         android:id="@+id/fg_chat"
-        android:name="io.github.lingnanlu.gaoxiaolian.Fragment.ChatFragment"
+        android:name="io.github.lingnanlu.gaoxiaolian.ui.fragment.ChatFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_chat" />

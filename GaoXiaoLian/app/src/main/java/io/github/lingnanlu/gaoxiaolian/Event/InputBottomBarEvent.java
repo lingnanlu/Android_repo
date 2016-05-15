@@ -1,4 +1,4 @@
-package io.github.lingnanlu.gaoxiaolian.Event;
+package io.github.lingnanlu.gaoxiaolian.event;
 
 /**
  * Created by Administrator on 2016/4/28.

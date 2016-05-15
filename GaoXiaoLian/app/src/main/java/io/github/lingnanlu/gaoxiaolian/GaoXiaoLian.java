@@ -12,8 +12,10 @@ import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.lingnanlu.gaoxiaolian.POJO.ExternalData;
-import io.github.lingnanlu.gaoxiaolian.POJO.User;
+import io.github.lingnanlu.gaoxiaolian.model.Like;
+import io.github.lingnanlu.gaoxiaolian.model.Online;
+import io.github.lingnanlu.gaoxiaolian.model.User;
+import io.github.lingnanlu.gaoxiaolian.model.Visit;
 
 /**
  * Created by rico on 4/25/2016.
@@ -31,6 +33,10 @@ public class GaoXiaoLian extends Application {
 
         AVUser.alwaysUseSubUserClass(User.class);
         AVObject.registerSubclass(ExternalData.class);
+        AVObject.registerSubclass(Online.class);
+        AVObject.registerSubclass(Like.class);
+        AVObject.registerSubclass(Visit.class);
+
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
 
         AVIMMessageManager.registerMessageHandler(AVIMTypedMessage.class, new MessageHandler(this));

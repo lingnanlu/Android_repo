@@ -11,7 +11,7 @@
         android:layout_above="@+id/bottom_bar"
         />
 
-    <io.github.lingnanlu.gaoxiaolian.view.InputBottomBar
+    <io.github.lingnanlu.gaoxiaolian.ui.view.InputBottomBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

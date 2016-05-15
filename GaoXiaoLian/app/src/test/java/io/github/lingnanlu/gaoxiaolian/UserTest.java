@@ -2,7 +2,7 @@ package io.github.lingnanlu.gaoxiaolian;
 
 import org.junit.Before;
 
-import io.github.lingnanlu.gaoxiaolian.POJO.User;
+import io.github.lingnanlu.gaoxiaolian.model.User;
 
 /**
  * Created by rico on 5/2/2016.

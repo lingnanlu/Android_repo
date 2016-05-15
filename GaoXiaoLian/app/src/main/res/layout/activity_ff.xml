@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="io.github.lingnanlu.gaoxiaolian.Activity.FFActivity">
+    tools:context=".ui.activity.FFActivity">
 
     <include layout="@layout/toolbar"/>
 
@@ -34,7 +34,7 @@
         android:id="@+id/lv_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_user"
+        tools:listitem="@layout/item_online"
         >
     </ListView>
 

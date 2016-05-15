@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.OnlineActivity"
+    tools:context=".ui.activity.OnlineActivity"
     >
 
     <include layout="@layout/toolbar"/>
@@ -14,7 +14,7 @@
         android:id="@+id/list_online_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_user"
+        tools:listitem="@layout/item_online"
         >
     </ListView>
 

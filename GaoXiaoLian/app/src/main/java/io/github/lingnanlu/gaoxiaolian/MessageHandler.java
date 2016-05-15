@@ -8,7 +8,7 @@ import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 import com.avos.avoscloud.im.v2.AVIMTypedMessageHandler;
 
 import de.greenrobot.event.EventBus;
-import io.github.lingnanlu.gaoxiaolian.Event.ImTypeMessageEvent;
+import io.github.lingnanlu.gaoxiaolian.event.ImTypeMessageEvent;
 
 /**
  * Created by Administrator on 2016/4/28.
