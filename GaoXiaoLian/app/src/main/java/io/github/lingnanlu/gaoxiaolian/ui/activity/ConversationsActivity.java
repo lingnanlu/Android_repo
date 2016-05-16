@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
 import com.avos.avoscloud.im.v2.AVIMException;
@@ -18,13 +19,14 @@ import java.util.List;
 
 import butterknife.Bind;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
+import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ConversationHelper;
+import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.ui.adapter.ConversationListAdapter;
 
 public class ConversationsActivity extends BaseActivity implements AdapterView.OnItemClickListener{
-
-    User self;
 
     @Bind(R.id.list_convs)
     ListView lvConversations;
@@ -37,21 +39,16 @@ public class ConversationsActivity extends BaseActivity implements AdapterView.O
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        self = GaoXiaoLian.getUser();
-        AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();
-
-        query.containsMembers(Arrays.asList(self.getObjectId()));
-        query.findInBackground(new AVIMConversationQueryCallback() {
+        ConversationHelper.getConversations(new CallBack<List<AVIMConversation>>() {
             @Override
-            public void done(List<AVIMConversation> list, AVIMException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: conversation list get success size" + list.size());
-                    lvConversations.setAdapter(new ConversationListAdapter(ConversationsActivity
-                            .this, list));
-                    lvConversations.setOnItemClickListener(ConversationsActivity.this);
-                } else {
-                    Log.d(TAG, "done: conversation list get failed");
-                }
+            public void onResult(List<AVIMConversation> result) {
+                lvConversations.setAdapter(new ConversationListAdapter(ConversationsActivity.this, result));
+                lvConversations.setOnItemClickListener(ConversationsActivity.this);
+            }
+
+            @Override
+            public void onError(AVException e) {
+
             }
         });
     }
@@ -63,7 +60,5 @@ public class ConversationsActivity extends BaseActivity implements AdapterView.O
         intent.putExtra(ChatActivity.FROM, this.getClass().getSimpleName());
         intent.putExtra(ChatActivity.CONV_ID, conversation.getConversationId());
         startActivity(intent);
-
-
     }
 }

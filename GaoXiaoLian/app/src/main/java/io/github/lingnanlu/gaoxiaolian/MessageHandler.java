@@ -8,13 +8,13 @@ import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 import com.avos.avoscloud.im.v2.AVIMTypedMessageHandler;
 
 import de.greenrobot.event.EventBus;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ClientHelper;
 import io.github.lingnanlu.gaoxiaolian.event.ImTypeMessageEvent;
 
 /**
  * Created by Administrator on 2016/4/28.
  */
 public class MessageHandler extends AVIMTypedMessageHandler<AVIMTypedMessage>{
-
 
     private Context context;
 
@@ -27,7 +27,7 @@ public class MessageHandler extends AVIMTypedMessageHandler<AVIMTypedMessage>{
 
         String clientID = "";
 
-        clientID = GaoXiaoLian.getClient().getClientId();
+        clientID = ClientHelper.getInstance().getClientId();
         if (client.getClientId().equals(clientID)) {
 
             if (!message.getFrom().equals(clientID)) {

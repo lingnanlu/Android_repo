@@ -333,6 +333,7 @@ public class UserHelper {
         AVQuery<User> followerQuery = null;
         try {
             followerQuery = GaoXiaoLian.getUser().followerQuery(User.class);
+            followerQuery.include("follower");
             followerQuery.findInBackground(new FindCallback<User>() {
                 @Override
                 public void done(List<User> followers, AVException e) {
@@ -356,6 +357,7 @@ public class UserHelper {
         AVQuery<User> followeeQuery = null;
         try {
             followeeQuery = GaoXiaoLian.getUser().followeeQuery(User.class);
+            followeeQuery.include("followee");
             followeeQuery.findInBackground(new FindCallback<User>() {
                 @Override
                 public void done(List<User> followees, AVException e) {
@@ -374,25 +376,5 @@ public class UserHelper {
     }
 
 
-    public static void getConversations(CallBack<List<AVIMConversation>> cb) {
 
-        self = GaoXiaoLian.getUser();
-        AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();
-
-        query.containsMembers(Arrays.asList(self.getObjectId()));
-        query.findInBackground(new AVIMConversationQueryCallback() {
-            @Override
-            public void done(List<AVIMConversation> list, AVIMException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: conversation list get success size" + list.size());
-                    lvConversations.setAdapter(new ConversationListAdapter(ConversationsActivity
-                            .this, list));
-                    lvConversations.setOnItemClickListener(ConversationsActivity.this);
-                } else {
-                    Log.d(TAG, "done: conversation list get failed");
-                }
-            }
-        });
-
-    }
 }

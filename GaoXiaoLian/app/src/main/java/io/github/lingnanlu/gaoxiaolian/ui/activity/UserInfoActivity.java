@@ -121,10 +121,10 @@ public class UserInfoActivity extends BaseActivity {
 
     @OnClick(R.id.bt_send_private_msg)
     public void onSendPrivateMsgClick(View view) {
-//        Intent intent = new Intent(UserInfoActivity.this, ChatActivity.class);
-//        intent.putExtra(USER, user);
-//        intent.putExtra(ChatActivity.FROM, this.getClass().getSimpleName());
-//        startActivity(intent);
+        Intent intent = new Intent(UserInfoActivity.this, ChatActivity.class);
+        intent.putExtra(ChatActivity.USERNAME, txName.getText().toString());
+        intent.putExtra(ChatActivity.FROM, this.getClass().getSimpleName());
+        startActivity(intent);
     }
 
     @Override

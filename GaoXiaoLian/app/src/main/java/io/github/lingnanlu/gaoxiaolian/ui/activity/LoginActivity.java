@@ -12,6 +12,7 @@ import com.avos.avoscloud.AVException;
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ClientHelper;
 import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.model.User;
@@ -41,52 +42,6 @@ public class LoginActivity extends BaseActivity {
 
         UserHelper.login(name, password, new LoginCallBack());
 
-//        AVUser.logInInBackground(name, password, new LogInCallback<User>() {
-//            @Override
-//            public void done(final User user, AVException e) {
-//                if( e == null) {
-//                    Date bubbleTime = new Date();
-//                    user.put(User.BUBBLE_TIME, bubbleTime);
-//                    GaoXiaoLian.setUser(user);
-//                    user.saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(AVException e) {
-//                            if (e == null) {
-//                                Log.d(TAG, "done: save success");
-//
-//                                final AVIMClient client = AVIMClient.getInstance(user
-// .getObjectId());
-//
-//                                client.open(new AVIMClientCallback() {
-//                                    @Override
-//                                    public void done(AVIMClient avimClient, AVIMException e) {
-//                                        if (e == null) {
-//                                            Log.d(TAG, "done: client open success");
-//                                            GaoXiaoLian.setClient(client);
-//                                            startActivity(HomeActivity.class);
-//                                            finish();
-//                                        } else {
-//                                            Log.d(TAG, "done: client open failed");
-//                                            btSignUp.setEnabled(true);
-//                                            btSignIn.setEnabled(true);
-//                                        }
-//                                    }
-//                                });
-//                            } else {
-//                                Log.d(TAG, "done: save failed " + e.toString());
-//                            }
-//                        }
-//                    });
-//
-//
-//                } else {
-//                    //登陆失败
-//                    Toast.makeText(LoginActivity.this, "用户名或密码不正确", Toast.LENGTH_LONG).show();
-//                    btSignUp.setEnabled(true);
-//                    btSignIn.setEnabled(true);
-//                }
-//            }
-//        }, User.class);
     }
 
     @OnClick(R.id.bt_signUp)
@@ -103,11 +58,26 @@ public class LoginActivity extends BaseActivity {
 
     class LoginCallBack implements CallBack<User> {
         @Override
-        public void onResult(User result) {
-            btSignIn.setClickable(true);
-            btSignUp.setClickable(true);
-            startActivity(HomeActivity.class);
-            finish();
+        public void onResult(User user) {
+
+
+            //当应用登录成功时, 找开client, 即与服务器建立长连接, 这样, 就可以在应用的生命周期内
+            //得到消息了
+            ClientHelper.getInstance().open(user.getUsername(), new CallBack<Void>() {
+                @Override
+                public void onResult(Void result) {
+                    btSignIn.setClickable(true);
+                    btSignUp.setClickable(true);
+                    startActivity(HomeActivity.class);
+                    finish();
+                }
+
+                @Override
+                public void onError(AVException e) {
+
+                }
+            });
+
         }
 
         @Override

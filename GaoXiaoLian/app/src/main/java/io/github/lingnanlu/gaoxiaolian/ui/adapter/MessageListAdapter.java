@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ClientHelper;
 import io.github.lingnanlu.gaoxiaolian.ui.viewholder.CommonViewHolder;
 import io.github.lingnanlu.gaoxiaolian.ui.viewholder.LeftTextHolder;
 import io.github.lingnanlu.gaoxiaolian.ui.viewholder.RightTextHolder;
@@ -44,7 +45,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemViewType(int position) {
         AVIMMessage message = messageList.get(position);
-        if (message.getFrom().equals(GaoXiaoLian.getClient().getClientId())) {
+        if (message.getFrom().equals(ClientHelper.getInstance().getClientId())) {
             return ITEM_RIGHT_TEXT;
         } else {
             return ITEM_LEFT_TEXT;

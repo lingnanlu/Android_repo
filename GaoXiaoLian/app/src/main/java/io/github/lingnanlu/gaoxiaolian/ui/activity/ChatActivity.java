@@ -2,18 +2,17 @@ package io.github.lingnanlu.gaoxiaolian.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.avos.avoscloud.im.v2.AVIMClient;
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
 import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
-import java.util.Arrays;
 import java.util.List;
 
+import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ConversationHelper;
 import io.github.lingnanlu.gaoxiaolian.ui.fragment.ChatFragment;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.model.User;
@@ -22,9 +21,9 @@ import io.github.lingnanlu.gaoxiaolian.R;
 public class ChatActivity extends BaseActivity {
 
     public static final String FROM = "from";
+    public static final String USERNAME = "username";
     public static final String CONV_ID = "conversation_id";
 
-    User user;
     ChatFragment fgChat;
 
     @Override
@@ -38,58 +37,34 @@ public class ChatActivity extends BaseActivity {
 
         String from = intent.getStringExtra(FROM);
 
+        String username = intent.getStringExtra(USERNAME);
         if (from.equals(UserInfoActivity.class.getSimpleName())) {
 
-           // user = getIntent().getParcelableExtra(UserInfoActivity.USER);
+            setTitle(username);
 
-            setTitle(user.getUsername());
-
-            final AVIMClient client = GaoXiaoLian.getClient();
-            AVIMConversationQuery conversationQuery = client.getQuery();
-            conversationQuery.withMembers(Arrays.asList(user.getObjectId()));
-            conversationQuery.findInBackground(new AVIMConversationQueryCallback() {
+            ConversationHelper.getConversationByMember(username, new CallBack<AVIMConversation>() {
                 @Override
-                public void done(List<AVIMConversation> list, AVIMException e) {
-                    if (e == null) {
-                        Log.d(TAG, "done: conversation query success");
-                        if(list != null && list.size() > 0) {
-                            fgChat.setConversation(list.get(0));
-                        } else {
-                            //创建对话
-                            client.createConversation(
-                                    Arrays.asList(user.getObjectId()),
-                                    null,
-                                    null,
-                                    false,
-                                    true,
-                                    new AVIMConversationCreatedCallback() {
-                                        @Override
-                                        public void done(AVIMConversation conversation, AVIMException e) {
-                                            if (filter(e)) {
-                                                fgChat.setConversation(conversation);
-                                            }
-                                        }
-                                    }
-                            );
-                        }
-                    } else {
-                        Log.d(TAG, "done: conversation query failed");
-                    }
+                public void onResult(AVIMConversation result) {
+                    fgChat.setConversation(result);
+                }
+
+                @Override
+                public void onError(AVException e) {
+
                 }
             });
 
         } else {
             String conv_id = intent.getStringExtra(CONV_ID);
-            AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();
-            query.whereEqualTo("objectId",conv_id);
-            query.findInBackground(new AVIMConversationQueryCallback() {
+            ConversationHelper.getConversationByID(conv_id, new CallBack<AVIMConversation>() {
                 @Override
-                public void done(List<AVIMConversation> list, AVIMException e) {
-                    if (filter(e)) {
-                        if (list != null && !list.isEmpty()) {
-                            fgChat.setConversation(list.get(0));
-                        }
-                    }
+                public void onResult(AVIMConversation result) {
+                    fgChat.setConversation(result);
+                }
+
+                @Override
+                public void onError(AVException e) {
+
                 }
             });
         }

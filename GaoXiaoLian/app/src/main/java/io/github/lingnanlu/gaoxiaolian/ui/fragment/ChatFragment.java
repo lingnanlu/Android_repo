@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.AVIMMessage;
@@ -23,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
+import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.ConversationHelper;
 import io.github.lingnanlu.gaoxiaolian.event.ImTypeMessageEvent;
 import io.github.lingnanlu.gaoxiaolian.event.InputBottomBarTextEvent;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
@@ -32,14 +35,12 @@ import io.github.lingnanlu.gaoxiaolian.ui.view.InputBottomBar;
 
 public class ChatFragment extends Fragment {
 
-
     private static final String TAG = "ChatFragment";
     protected AVIMConversation conversation;
     protected RecyclerView recyclerView;
     protected MessageListAdapter itemAdapter;
     protected LinearLayoutManager layoutManager;
     protected InputBottomBar inputBottomBar;
-
 
     @Nullable
     @Override
@@ -68,20 +69,20 @@ public class ChatFragment extends Fragment {
 
     private void fetchMessages() {
 
-        if (conversation != null) {
-            conversation.queryMessages(new AVIMMessagesQueryCallback() {
-                @Override
-                public void done(List<AVIMMessage> list, AVIMException e) {
-                    if (e == null) {
-                        Log.d(TAG, "done: message fetch success");
-                        itemAdapter.setMessageList(list);
-                        recyclerView.setAdapter(itemAdapter);
-                        itemAdapter.notifyDataSetChanged();
-                        scrollToBottom();
-                    }
-                }
-            });
-        }
+        ConversationHelper.queryMessages(conversation, new CallBack<List<AVIMMessage>>() {
+            @Override
+            public void onResult(List<AVIMMessage> result) {
+                itemAdapter.setMessageList(result);
+                recyclerView.setAdapter(itemAdapter);
+                itemAdapter.notifyDataSetChanged();
+                scrollToBottom();
+            }
+
+            @Override
+            public void onError(AVException e) {
+
+            }
+        });
     }
 
     private void scrollToBottom() {
@@ -89,25 +90,29 @@ public class ChatFragment extends Fragment {
     }
 
     public void onEvent(InputBottomBarTextEvent event) {
+
         Log.d(TAG, "onEvent: " + event.content);
-        if (conversation != null && event != null) {
-            if(!TextUtils.isEmpty(event.content)) {
-                AVIMTextMessage message = new AVIMTextMessage();
-                Map<String, Object> attrs = new HashMap<>();
-                attrs.put("sender", GaoXiaoLian.getUser().getUsername());
-                message.setAttrs(attrs);
-                message.setText(event.content);
-                itemAdapter.addMessage(message);
-                itemAdapter.notifyDataSetChanged();
-                scrollToBottom();
-                conversation.sendMessage(message, new AVIMConversationCallback() {
-                    @Override
-                    public void done(AVIMException e) {
-                        //这里有什么用?
-                        itemAdapter.notifyDataSetChanged();
-                    }
-                });
-            }
+
+        if (event != null && !TextUtils.isEmpty(event.content)) {
+            AVIMTextMessage message = new AVIMTextMessage();
+            Map<String, Object> attrs = new HashMap<>();
+            attrs.put("sender", GaoXiaoLian.getUser().getUsername());
+            message.setAttrs(attrs);
+            message.setText(event.content);
+            itemAdapter.addMessage(message);
+            itemAdapter.notifyDataSetChanged();
+            scrollToBottom();
+            ConversationHelper.sendMessage(conversation, message, new CallBack<Void>() {
+                @Override
+                public void onResult(Void result) {
+                    itemAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onError(AVException e) {
+
+                }
+            });
         }
     }
 
