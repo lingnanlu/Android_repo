@@ -42,6 +42,18 @@ public class User extends AVUser {
     public static final String CONTACT = "contact";
     public static final String PRIVATE = "private";
 
+    //这里的Bubble_time只是作为属性, 个人主页与粉丝关注列表时的冒泡时间, 不用来表示在线用户
+    public static final String BUBBLE_TIME = "bubble_time"; //date类型
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ObjectId:" + getObjectId() + "\n");
+        sb.append("UserName:" + getUsername() + "\n");
+        sb.append(SEX + ":" + getString(SEX) + "\n");
+        return sb.toString();
+    }
+
     //父类会再次调用子类的put, 导致stackoverflow, 所以该方法暂时不行
 
 //    @Override

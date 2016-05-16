@@ -10,44 +10,39 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 
 /**
- * Created by rico on 5/3/2016.
- * 这个Adapter被复用, 用在以下几个地方
- * 1. Online
- * 2. 关注-粉丝
- *
- * 两者的唯一不同是显示
- *
+ * Created by Administrator on 2016/5/16.
  */
-public class UserListAdapter extends BaseAdapter{
+public class OnlineAdapter extends BaseAdapter {
 
     LayoutInflater inflater;
-    List<User> users;
+    List<Online> onlines;
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(List<Online> onlines) {
+        this.onlines = onlines;
     }
 
-    public UserListAdapter(Context context, List<User> users) {
+    public OnlineAdapter(Context context, List<Online> onlines) {
         inflater = LayoutInflater.from(context);
-        this.users = users;
+        this.onlines = onlines;
     }
 
-    public UserListAdapter(Context context) {
+    public OnlineAdapter(Context context) {
         inflater = LayoutInflater.from(context);
     }
     @Override
     public int getCount() {
-        if (users != null) return users.size();
+        if (onlines != null) return onlines.size();
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
 
-        if (users != null ) return users.get(position);
+        if (onlines != null ) return onlines.get(position);
         return null;
     }
 
@@ -72,15 +67,18 @@ public class UserListAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-
-        User user = users.get(position);
-        viewHolder.name.setText(user.getUsername());
+        Online online = onlines.get(position);
+        try {
+            User user = online.getAVObject(Online.USER, User.class);
+            viewHolder.name.setText(user.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }
 
     class ViewHolder {
         TextView name;
-        TextView bubble_time;
     }
 }

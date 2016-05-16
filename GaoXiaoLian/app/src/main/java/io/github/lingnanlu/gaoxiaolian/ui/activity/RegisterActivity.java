@@ -14,9 +14,9 @@ import com.avos.avoscloud.AVException;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.core.CallBack;
 import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
-import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 
 public class RegisterActivity extends BaseActivity{
@@ -51,7 +51,7 @@ public class RegisterActivity extends BaseActivity{
 //        data.put(ExternalData.LIKE_NUM, 0);
 //        data.saveInBackground(new SaveCallback() {
 //            @Override
-//            public void done(AVException e) {
+//            public void do<ne(AVException e) {
 //               if(filter(e)) {
 //                   AVRelation<ExternalData> relation = user.getRelation(User.EXTERNAL_DATA);
 //                   relation.add(data);
@@ -79,6 +79,7 @@ public class RegisterActivity extends BaseActivity{
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+
         user = new User();
         /*
          * simple_spinner_dropdown_item 指的是弹出后,每一个Item的样式

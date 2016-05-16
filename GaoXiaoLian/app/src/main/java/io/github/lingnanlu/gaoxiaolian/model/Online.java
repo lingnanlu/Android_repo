@@ -5,6 +5,7 @@ import com.avos.avoscloud.AVObject;
 
 /**
  * Created by rico on 5/14/2016.
+ * 这里的Bubble Time用来对在线用户的冒泡时间进行排序, 每有一个Online对象表示一个用户在线
  */
 
 @AVClassName("Online")

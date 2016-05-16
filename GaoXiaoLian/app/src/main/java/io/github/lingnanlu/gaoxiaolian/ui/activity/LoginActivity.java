@@ -16,7 +16,7 @@ import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity {
 
     @Bind(R.id.bt_signIn)
     Button btSignIn;
@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity{
         String password = etPassword.getText().toString();
 
         btSignIn.setClickable(false);
-        btSignUp.setClickable(true);
+        btSignUp.setClickable(false);
 
         UserHelper.login(name, password, new LoginCallBack());
 
@@ -54,7 +54,8 @@ public class LoginActivity extends BaseActivity{
 //                            if (e == null) {
 //                                Log.d(TAG, "done: save success");
 //
-//                                final AVIMClient client = AVIMClient.getInstance(user.getObjectId());
+//                                final AVIMClient client = AVIMClient.getInstance(user
+// .getObjectId());
 //
 //                                client.open(new AVIMClientCallback() {
 //                                    @Override
@@ -105,6 +106,8 @@ public class LoginActivity extends BaseActivity{
         public void onResult(User result) {
             btSignIn.setClickable(true);
             btSignUp.setClickable(true);
+            startActivity(HomeActivity.class);
+            finish();
         }
 
         @Override
@@ -114,7 +117,6 @@ public class LoginActivity extends BaseActivity{
             btSignUp.setClickable(true);
         }
     }
-
 
 
 }

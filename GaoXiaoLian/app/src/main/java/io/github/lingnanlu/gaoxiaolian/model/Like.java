@@ -12,4 +12,5 @@ public class Like extends AVObject{
 
     public static final String FROM = "from";      //点赞者
     public static final String TO = "to";          //被赞者
+
 }

@@ -2,18 +2,19 @@ package io.github.lingnanlu.gaoxiaolian.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.SaveCallback;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 
 public class EditActivity extends BaseActivity {
@@ -30,23 +31,23 @@ public class EditActivity extends BaseActivity {
     @Bind(R.id.et_contact) EditText etContact;
     @Bind(R.id.et_private) EditText etPrivate;
 
-    @Bind(R.id.bt_commit)
-    Button btCommit;
+    @Bind(R.id.bt_commit) Button btCommit;
 
     @OnClick(R.id.bt_commit)
     public void onCommit(View view) {
 
         fillUser();
 
-        user.saveInBackground(new SaveCallback() {
+        UserHelper.save(new CallBack<Void>() {
             @Override
-            public void done(AVException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: save success");
-                    finish();
-                } else {
-                    Log.d(TAG, "done: save failed " + e.toString());
-                }
+            public void onResult(Void result) {
+                Toast.makeText(EditActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onError(AVException e) {
+
             }
         });
 
@@ -77,20 +78,6 @@ public class EditActivity extends BaseActivity {
         fillEditText();
 
     }
-
-//    private void init() {
-//        map = new HashMap<>();
-//
-//        LinearLayout editLayout = (LinearLayout) findViewById(R.id.edit_layout);
-//        int childCount = editLayout.getChildCount();
-//        for(int i = 0; i < childCount; i++) {
-//            View child = editLayout.getChildAt(i);
-//            if (child instanceof EditText) {
-//                map.put(((EditText) child).getHint(), (EditText) child);
-//            }
-//        }
-//
-//    }
 
     private void fillEditText() {
 

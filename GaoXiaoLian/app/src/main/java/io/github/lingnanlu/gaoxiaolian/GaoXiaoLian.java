@@ -32,7 +32,6 @@ public class GaoXiaoLian extends Application {
         super.onCreate();
 
         AVUser.alwaysUseSubUserClass(User.class);
-        AVObject.registerSubclass(ExternalData.class);
         AVObject.registerSubclass(Online.class);
         AVObject.registerSubclass(Like.class);
         AVObject.registerSubclass(Visit.class);

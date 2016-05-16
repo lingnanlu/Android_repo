@@ -7,16 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
+import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.core.CallBack;
 import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.model.User;
-import io.github.lingnanlu.gaoxiaolian.R;
 /*
  * 该Activity有三种情况
  * 1. 用户本身的信息界面
@@ -28,7 +29,6 @@ import io.github.lingnanlu.gaoxiaolian.R;
 public class UserInfoActivity extends BaseActivity {
 
     public static final String USERID = "userid";
-   // public static final String USER = "user";
 
     String mUserID;
 
@@ -62,7 +62,7 @@ public class UserInfoActivity extends BaseActivity {
 
             @Override
             public void onError(AVException e) {
-                Log.d(TAG, "onError: " + e);
+
             }
         });
     }
@@ -90,14 +90,33 @@ public class UserInfoActivity extends BaseActivity {
         UserHelper.like(mUserID, new CallBack<Void>() {
             @Override
             public void onResult(Void result) {
+                UserHelper.getLikeCount(mUserID, new CallBack<Integer>() {
+                    @Override
+                    public void onResult(Integer likeCount) {
+                        btLike.setText(likeCount + "");
+                    }
 
+                    @Override
+                    public void onError(AVException e) {
+
+                    }
+                });
             }
 
             @Override
             public void onError(AVException e) {
-                Log.d(TAG, "onError: " + e);
+
+                if(e.getCode() == AVException.DUPLICATE_VALUE){
+                    Toast.makeText(UserInfoActivity.this, "您已经点过赞了", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+
+    @OnClick(R.id.bt_edit)
+    public void onEditClick(View view) {
+        startActivity(EditActivity.class);
     }
 
     @OnClick(R.id.bt_send_private_msg)
@@ -139,6 +158,12 @@ public class UserInfoActivity extends BaseActivity {
 
     private void hideViews() {
 
+        txPrivate.setVisibility(View.GONE);
+        btFollow.setVisibility(View.GONE);
+        btSendPrivateMsg.setVisibility(View.GONE);
+        btUnFollow.setVisibility(View.GONE);
+        btEdit.setVisibility(View.GONE);
+
     }
 
     class GetUserCallBack implements CallBack<User> {
@@ -152,6 +177,18 @@ public class UserInfoActivity extends BaseActivity {
             txMotto.setText(user.getString(User.MOTTO));
             txSchool.setText(user.getString(User.SCHOOL));
             txSN.setText(user.getString(User.SN));
+
+            UserHelper.getLikeCount(user.getObjectId(), new CallBack<Integer>() {
+                @Override
+                public void onResult(Integer likeCount) {
+                    btLike.setText(likeCount + "");
+                }
+
+                @Override
+                public void onError(AVException e) {
+
+                }
+            });
 
             if (user.getObjectId().equals(GaoXiaoLian.getUser().getObjectId())) {
                 btLike.setClickable(false);
@@ -172,6 +209,7 @@ public class UserInfoActivity extends BaseActivity {
     class QueryFollowCallback implements CallBack<Boolean> {
         @Override
         public void onResult(Boolean hasFollowed) {
+
 
             if (hasFollowed == true) {
                 btUnFollow.setVisibility(View.VISIBLE);

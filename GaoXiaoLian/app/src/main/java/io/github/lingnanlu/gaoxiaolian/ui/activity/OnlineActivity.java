@@ -11,19 +11,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.FindCallback;
 
 import java.util.List;
 
 import butterknife.Bind;
-import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
 import io.github.lingnanlu.gaoxiaolian.core.CallBack;
 import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
-import io.github.lingnanlu.gaoxiaolian.ui.adapter.UserListAdapter;
+import io.github.lingnanlu.gaoxiaolian.ui.adapter.OnlineAdapter;
 
 // TODO: 2016/5/4 online还未实现, SDK并没有提供得到在线用户的接口
 // 暂时可以想到, 利用用户的冒泡时间来模拟在线功能, 根据用户的冒泡时间来进行排序
@@ -44,7 +41,7 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
             @Override
             public void onResult(List<Online> onlines) {
                 if (onlines != null) {
-                    lvOnlineUsers.setAdapter(new UserListAdapter(OnlineActivity.this, onlines));
+                    lvOnlineUsers.setAdapter(new OnlineAdapter(OnlineActivity.this, onlines));
                     lvOnlineUsers.setOnItemClickListener(OnlineActivity.this);
                 }
 
@@ -59,13 +56,19 @@ public class OnlineActivity extends BaseActivity implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        User user = (User) parent.getItemAtPosition(position);
+        Online online = (Online) parent.getItemAtPosition(position);
+        try {
+            User user = online.getAVObject(Online.USER, User.class);
+            if (user != null) {
+                Intent intent = new Intent(this, UserInfoActivity.class);
+                intent.putExtra(UserInfoActivity.USERID, user.getObjectId());
+                startActivity(intent);
+            }
 
-        if (user != null) {
-            Intent intent = new Intent(this, UserInfoActivity.class);
-            intent.putExtra(UserInfoActivity.USERID, user.getObjectId());
-            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override

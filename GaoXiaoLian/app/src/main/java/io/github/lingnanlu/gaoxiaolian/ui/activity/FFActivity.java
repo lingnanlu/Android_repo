@@ -11,48 +11,27 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVFriendship;
-import com.avos.avoscloud.AVFriendshipQuery;
-import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.callback.AVFriendshipCallback;
 
 import java.util.List;
 
 import butterknife.Bind;
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.R;
+import io.github.lingnanlu.gaoxiaolian.core.CallBack;
+import io.github.lingnanlu.gaoxiaolian.core.helper.UserHelper;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 import io.github.lingnanlu.gaoxiaolian.ui.adapter.UserListAdapter;
 
 public class FFActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
-    List<User> followers;
-    List<User> followees;
+    List<User> followers;           //关注我的人
+    List<User> followees;           //我关注的人
+
     UserListAdapter userListAdapter;
     User user;
 
-//    @Bind(R.id.bt_follower)
-//    Button btFollower;
-//
-//    @Bind(R.id.bt_followee)
-//    Button btFollowee;
-
     @Bind(R.id.lv_users)
     ListView lvUsers;
-//
-//    @OnClick(R.id.bt_follower)
-//    public void onFollowerClick(View view) {
-//
-//        userListAdapter.setUsers(followers);
-//        lvUsers.setAdapter(userListAdapter);
-//
-//    }
-//
-//    @OnClick(R.id.bt_followee)
-//    public void onFolloweeClick(View view) {
-//        userListAdapter.setUsers(followees);
-//        lvUsers.setAdapter(userListAdapter);
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,26 +46,33 @@ public class FFActivity extends BaseActivity implements AdapterView.OnItemClickL
         userListAdapter = new UserListAdapter(this);
         lvUsers.setOnItemClickListener(this);
 
-        AVFriendshipQuery friendshipQuery = AVUser.friendshipQuery(user.getObjectId(), User.class);
-        friendshipQuery.include("followee");
-        friendshipQuery.include("followee");
-
-        friendshipQuery.getInBackground(new AVFriendshipCallback() {
+        UserHelper.getFollowers(new CallBack<List<User>>() {
             @Override
-            public void done(AVFriendship avFriendship, AVException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: friendship get success ");
-                    followers = avFriendship.getFollowers();
-                    followees = avFriendship.getFollowees();
-                    Log.d(TAG, "done: followers " + followers);
-                    Log.d(TAG, "done: followee " + followees);
-                    //btFollower.performClick();
-                } else {
-                    Log.d(TAG, "done: friendship get failed");
-                }
+            public void onResult(List<User> result) {
+                followers = result;
+                userListAdapter.setUsers(followers);
+                lvUsers.setAdapter(userListAdapter);
+            }
+
+            @Override
+            public void onError(AVException e) {
 
             }
         });
+
+        UserHelper.getFollowees(new CallBack<List<User>>(){
+
+            @Override
+            public void onResult(List<User> result) {
+                followees = result;
+            }
+
+            @Override
+            public void onError(AVException e) {
+
+            }
+        });
+
 
     }
 
@@ -97,8 +83,7 @@ public class FFActivity extends BaseActivity implements AdapterView.OnItemClickL
 
         if (user != null) {
             Intent intent = new Intent(this, UserInfoActivity.class);
-         //   intent.putExtra(UserInfoActivity.USERID, user.getObjectId());
-            intent.putExtra(UserInfoActivity.USER, user);
+            intent.putExtra(UserInfoActivity.USERID, user.getObjectId());
             startActivity(intent);
         }
     }

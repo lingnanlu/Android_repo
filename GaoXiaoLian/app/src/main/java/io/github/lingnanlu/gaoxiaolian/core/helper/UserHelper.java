@@ -3,7 +3,6 @@ package io.github.lingnanlu.gaoxiaolian.core.helper;
 import android.util.Log;
 
 import com.avos.avoscloud.AVException;
-
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
@@ -14,7 +13,12 @@ import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
+import com.avos.avoscloud.im.v2.AVIMConversation;
+import com.avos.avoscloud.im.v2.AVIMConversationQuery;
+import com.avos.avoscloud.im.v2.AVIMException;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +28,8 @@ import io.github.lingnanlu.gaoxiaolian.model.Like;
 import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 import io.github.lingnanlu.gaoxiaolian.model.Visit;
+import io.github.lingnanlu.gaoxiaolian.ui.activity.ConversationsActivity;
+import io.github.lingnanlu.gaoxiaolian.ui.adapter.ConversationListAdapter;
 
 /**
  * Created by rico on 5/15/2016.
@@ -161,6 +167,7 @@ public class UserHelper {
     public static void like(String userid, final CallBack<Void> cb) {
 
         if (userid.equals(GaoXiaoLian.getUser().getObjectId())) {
+            Log.d(TAG, "like: userid same");
             return;
         }
 
@@ -172,6 +179,7 @@ public class UserHelper {
             public void done(AVException e) {
                 if (e == null) {
                     Log.d(TAG, "done: like success");
+                    cb.onResult(null);
                 } else {
                     Log.d(TAG, "done: like failed" + e);
                     cb.onError(e);
@@ -191,8 +199,9 @@ public class UserHelper {
                     Log.d(TAG, "done: get likes success " + likes);
                     if (likes == null) {
                         cb.onResult(0);
+                    } else {
+                        cb.onResult(likes.size());
                     }
-                    cb.onResult(likes.size());
                 } else {
                     Log.d(TAG, "done: get likes failed " + e);
                     cb.onError(e);
@@ -239,7 +248,8 @@ public class UserHelper {
     public static void online() {
         online = new Online();
         online.put(Online.USER, GaoXiaoLian.getUser());
-        online.put(Online.BUBBLE_TIME, new Date());
+        Date date = new Date();
+        online.put(Online.BUBBLE_TIME, date);
         online.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
@@ -247,6 +257,19 @@ public class UserHelper {
                     Log.d(TAG, "done: online success");
                 } else {
                     Log.d(TAG, "done: online failed");
+                }
+            }
+        });
+
+        //更新用户的冒泡时间
+        GaoXiaoLian.getUser().put(User.BUBBLE_TIME, date);
+        GaoXiaoLian.getUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.d(TAG, "done: update bubble time success");
+                } else {
+                    Log.d(TAG, "done: update bubble time failed " + e);
                 }
             }
         });
@@ -283,6 +306,90 @@ public class UserHelper {
                 } else {
                     Log.d(TAG, "done: get online users failed " + e);
                     cb.onError(e);
+                }
+            }
+        });
+
+    }
+
+    public static void save(final CallBack<Void> cb) {
+
+        GaoXiaoLian.getUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.d(TAG, "done: save  success");
+                    cb.onResult(null);
+                } else {
+                    Log.d(TAG, "done: save failed " + e);
+                }
+            }
+        });
+
+    }
+
+    public static void getFollowers(final CallBack<List<User>> cb) {
+
+        AVQuery<User> followerQuery = null;
+        try {
+            followerQuery = GaoXiaoLian.getUser().followerQuery(User.class);
+            followerQuery.findInBackground(new FindCallback<User>() {
+                @Override
+                public void done(List<User> followers, AVException e) {
+                    if (e == null) {
+                        Log.d(TAG, "done: getFollowers success " + followers);
+                        cb.onResult(followers);
+                    } else {
+                        Log.d(TAG, "done: getFollowers error");
+                        cb.onError(e);
+                    }
+                }
+            });
+        } catch (AVException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void getFollowees(final CallBack<List<User>> cb) {
+
+        AVQuery<User> followeeQuery = null;
+        try {
+            followeeQuery = GaoXiaoLian.getUser().followeeQuery(User.class);
+            followeeQuery.findInBackground(new FindCallback<User>() {
+                @Override
+                public void done(List<User> followees, AVException e) {
+                    if (e == null) {
+                        Log.d(TAG, "done: getFollowees success " + followees);
+                        cb.onResult(followees);
+                    } else {
+                        Log.d(TAG, "done: getFollowees error");
+                        cb.onError(e);
+                    }
+                }
+            });
+        } catch (AVException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void getConversations(CallBack<List<AVIMConversation>> cb) {
+
+        self = GaoXiaoLian.getUser();
+        AVIMConversationQuery query = GaoXiaoLian.getClient().getQuery();
+
+        query.containsMembers(Arrays.asList(self.getObjectId()));
+        query.findInBackground(new AVIMConversationQueryCallback() {
+            @Override
+            public void done(List<AVIMConversation> list, AVIMException e) {
+                if (e == null) {
+                    Log.d(TAG, "done: conversation list get success size" + list.size());
+                    lvConversations.setAdapter(new ConversationListAdapter(ConversationsActivity
+                            .this, list));
+                    lvConversations.setOnItemClickListener(ConversationsActivity.this);
+                } else {
+                    Log.d(TAG, "done: conversation list get failed");
                 }
             }
         });
