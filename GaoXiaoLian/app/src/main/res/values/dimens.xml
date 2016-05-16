@@ -39,8 +39,6 @@
     <dimen name="chat_input_bar_height">55dp</dimen>
 
 
-
-
     <!--logo-->
     <dimen name="logo_size">100dp</dimen>
     <dimen name="border_size">2dp</dimen>
@@ -70,7 +68,6 @@
     <dimen name="font_normal">20sp</dimen>
     <dimen name="font_small">15sp</dimen>
     <dimen name="font_tiny">10sp</dimen>
-
 
 
 </resources>

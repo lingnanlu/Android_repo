@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.lingnanlu.gaoxiaolian.model.Like;
-import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 import io.github.lingnanlu.gaoxiaolian.model.Visit;
 
@@ -32,7 +31,6 @@ public class GaoXiaoLian extends Application {
         super.onCreate();
 
         AVUser.alwaysUseSubUserClass(User.class);
-        AVObject.registerSubclass(Online.class);
         AVObject.registerSubclass(Like.class);
         AVObject.registerSubclass(Visit.class);
 

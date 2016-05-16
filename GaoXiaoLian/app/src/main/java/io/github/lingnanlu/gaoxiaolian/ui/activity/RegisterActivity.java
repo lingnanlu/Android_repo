@@ -46,29 +46,6 @@ public class RegisterActivity extends BaseActivity{
 
         UserHelper.register(user, new RegisterCallback());
 
-//        final ExternalData data = new ExternalData();
-//        data.put(ExternalData.VISIT_NUM, 0);
-//        data.put(ExternalData.LIKE_NUM, 0);
-//        data.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void do<ne(AVException e) {
-//               if(filter(e)) {
-//                   AVRelation<ExternalData> relation = user.getRelation(User.EXTERNAL_DATA);
-//                   relation.add(data);
-//                   user.signUpInBackground(new SignUpCallback() {
-//                       @Override
-//                       public void done(AVException e) {
-//                           if(filter(e)) {
-//                               startActivity(LoginActivity.class);
-//                               finish();
-//                           }
-//                       }
-//                   });
-//               }
-//            }
-//        });
-
-
     }
 
     @Override

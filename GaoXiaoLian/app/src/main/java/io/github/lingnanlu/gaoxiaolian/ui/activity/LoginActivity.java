@@ -60,7 +60,6 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onResult(User user) {
 
-
             //当应用登录成功时, 找开client, 即与服务器建立长连接, 这样, 就可以在应用的生命周期内
             //得到消息了
             ClientHelper.getInstance().open(user.getUsername(), new CallBack<Void>() {

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.R;
-import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 
 /**
@@ -19,15 +18,15 @@ import io.github.lingnanlu.gaoxiaolian.model.User;
 public class OnlineAdapter extends BaseAdapter {
 
     LayoutInflater inflater;
-    List<Online> onlines;
+    List<User> users;
 
-    public void setUsers(List<Online> onlines) {
-        this.onlines = onlines;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public OnlineAdapter(Context context, List<Online> onlines) {
+    public OnlineAdapter(Context context, List<User> users) {
         inflater = LayoutInflater.from(context);
-        this.onlines = onlines;
+        this.users = users;
     }
 
     public OnlineAdapter(Context context) {
@@ -35,14 +34,14 @@ public class OnlineAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        if (onlines != null) return onlines.size();
+        if (users != null) return users.size();
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
 
-        if (onlines != null ) return onlines.get(position);
+        if (users != null ) return users.get(position);
         return null;
     }
 
@@ -67,18 +66,14 @@ public class OnlineAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Online online = onlines.get(position);
-        try {
-            User user = online.getAVObject(Online.USER, User.class);
-            viewHolder.name.setText(user.getUsername());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        User user = users.get(position);
 
+        viewHolder.name.setText(user.getUsername());
         return convertView;
     }
 
     class ViewHolder {
         TextView name;
+        TextView bubble_time;
     }
 }

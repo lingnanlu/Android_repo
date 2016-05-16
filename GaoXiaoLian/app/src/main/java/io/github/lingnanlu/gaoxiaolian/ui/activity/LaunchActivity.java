@@ -18,7 +18,6 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(LaunchActivity.this, LoginActivity.class);
-                //startActivity(LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

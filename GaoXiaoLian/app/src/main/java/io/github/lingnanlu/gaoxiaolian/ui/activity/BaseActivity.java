@@ -36,15 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-
-    public boolean filter(AVException e) {
-        if(e == null) {
-            Log.d(TAG, "success");
-            return true;
-        } else {
-            Log.d(TAG, "failed " + e.toString());
-            return false;
-        }
-    }
+    
 
 }

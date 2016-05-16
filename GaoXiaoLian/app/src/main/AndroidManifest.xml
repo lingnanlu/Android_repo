@@ -24,62 +24,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:label="@string/login"
-            >
-
-        </activity>
-
+            android:label="@string/login"></activity>
         <activity
             android:name=".ui.activity.HomeActivity"
-            android:label="@string/home"
-            ></activity>
-
+            android:label="@string/home" />
         <activity
-
             android:name=".ui.activity.RegisterActivity"
             android:label="@string/register"
-            android:parentActivityName=".ui.activity.LoginActivity"
-
-            >
-        </activity>
-
-
+            android:parentActivityName=".ui.activity.LoginActivity"></activity>
         <activity
-
             android:name=".ui.activity.UserInfoActivity"
-            android:label="@string/personal_info"
-
-            >
-
-        </activity>
-
+            android:label="@string/personal_info"></activity>
         <activity
             android:name=".ui.activity.EditActivity"
             android:label="@string/edit"
-            android:parentActivityName=".ui.activity.HomeActivity"
-            ></activity>
-
+            android:parentActivityName=".ui.activity.HomeActivity" />
         <activity
             android:name=".ui.activity.FFActivity"
             android:label="@string/follower_followee"
-            android:parentActivityName=".ui.activity.HomeActivity"
-            ></activity>
-
+            android:parentActivityName=".ui.activity.HomeActivity" />
         <activity
             android:name=".ui.activity.OnlineActivity"
             android:label="@string/online"
-            android:parentActivityName=".ui.activity.HomeActivity"
-            ></activity>
-
-
-        <activity android:name=".ui.activity.ConversationsActivity"></activity>
-        <activity android:name=".ui.activity.ChatActivity"></activity>
-        <activity android:name=".ui.activity.MatchResultActivity"></activity>
-        <activity android:name=".ui.activity.MatchActivity"></activity>
-        <activity android:name=".ui.activity.MatchSettingActivity"></activity>
+            android:parentActivityName=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.ConversationsActivity" />
+        <activity android:name=".ui.activity.ChatActivity" />
+        <activity android:name=".ui.activity.MatchResultActivity" />
+        <activity android:name=".ui.activity.MatchActivity" />
+        <activity android:name=".ui.activity.MatchSettingActivity" />
 
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
         <service android:name="com.avos.avoscloud.PushService" />
@@ -91,7 +65,8 @@
             </intent-filter>
         </receiver>
         <!-- 实时通信模块、推送 END -->
-        <activity android:name=".ui.activity.BaseActivity"></activity>
+        <activity android:name=".ui.activity.BaseActivity" />
+        <activity android:name=".ui.activity.SettingActivity"></activity>
     </application>
 
 </manifest>

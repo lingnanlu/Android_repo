@@ -6,30 +6,21 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.DeleteCallback;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.FollowCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
-import com.avos.avoscloud.im.v2.AVIMConversation;
-import com.avos.avoscloud.im.v2.AVIMConversationQuery;
-import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import io.github.lingnanlu.gaoxiaolian.GaoXiaoLian;
 import io.github.lingnanlu.gaoxiaolian.core.CallBack;
 import io.github.lingnanlu.gaoxiaolian.model.Like;
-import io.github.lingnanlu.gaoxiaolian.model.Online;
 import io.github.lingnanlu.gaoxiaolian.model.User;
 import io.github.lingnanlu.gaoxiaolian.model.Visit;
-import io.github.lingnanlu.gaoxiaolian.ui.activity.ConversationsActivity;
-import io.github.lingnanlu.gaoxiaolian.ui.adapter.ConversationListAdapter;
 
 /**
  * Created by rico on 5/15/2016.
@@ -243,63 +234,53 @@ public class UserHelper {
         });
     }
 
-    //当该对象不为空时, 说明其在线
-    private static Online online;
+    //上线操作
+    //1. 更新冒泡时间
+    //2. 更新在线状态
     public static void online() {
-        online = new Online();
-        online.put(Online.USER, GaoXiaoLian.getUser());
+
+        User user = GaoXiaoLian.getUser();
         Date date = new Date();
-        online.put(Online.BUBBLE_TIME, date);
-        online.saveInBackground(new SaveCallback() {
+        user.put(User.BUBBLE_TIME, date);
+        user.put(User.STATUS, User.STATUS_ONLINE);
+        user.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null) {
                     Log.d(TAG, "done: online success");
                 } else {
-                    Log.d(TAG, "done: online failed");
+                    Log.d(TAG, "done: online failed " + e);
                 }
             }
         });
 
-        //更新用户的冒泡时间
-        GaoXiaoLian.getUser().put(User.BUBBLE_TIME, date);
-        GaoXiaoLian.getUser().saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                if (e == null) {
-                    Log.d(TAG, "done: update bubble time success");
-                } else {
-                    Log.d(TAG, "done: update bubble time failed " + e);
-                }
-            }
-        });
     }
 
     // TODO: 5/15/2016 也许叫为sign out更合适?
     public static void offline() {
-        if (online != null) {
-            online.deleteInBackground(new DeleteCallback() {
-                @Override
-                public void done(AVException e) {
-                    if (e == null) {
-                        Log.d(TAG, "done: offline success ");
-                        // TODO: 5/15/2016 这里可利用EventBus或广播机制 
-                    } else {
-
-                    }
-                }
-            });
-        }
+//        if (online != null) {
+//            online.deleteInBackground(new DeleteCallback() {
+//                @Override
+//                public void done(AVException e) {
+//                    if (e == null) {
+//                        Log.d(TAG, "done: offline success ");
+//                        // TODO: 5/15/2016 这里可利用EventBus或广播机制
+//                    } else {
+//
+//                    }
+//                }
+//            });
+//        }
     }
 
-    public static void getOnlineUsers(final CallBack<List<Online>> cb) {
-        AVQuery<Online> query = AVObject.getQuery(Online.class);
-        query.whereNotEqualTo(Online.USER, GaoXiaoLian.getUser());
-        query.include(Online.USER);
-        query.orderByDescending(Online.BUBBLE_TIME);
-        query.findInBackground(new FindCallback<Online>() {
+    public static void getOnlineUsers(final CallBack<List<User>> cb) {
+        AVQuery<User> query = AVObject.getQuery(User.class);
+        query.whereNotEqualTo(AVUser.OBJECT_ID, GaoXiaoLian.getUser().getObjectId());
+        query.whereEqualTo(User.STATUS, User.STATUS_ONLINE);
+        query.orderByDescending(User.BUBBLE_TIME);
+        query.findInBackground(new FindCallback<User>() {
             @Override
-            public void done(List<Online> onlines, AVException e) {
+            public void done(List<User> onlines, AVException e) {
                 if (e == null) {
                     Log.d(TAG, "done: get online users success " + onlines);
                     cb.onResult(onlines);
