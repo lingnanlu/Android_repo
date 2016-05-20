@@ -13,6 +13,8 @@ public class PushDemoApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+       // AVOSCloud.setLogLevel(AVOSCloud.LOG_LEVEL_VERBOSE);
+        AVOSCloud.setDebugLogEnabled(true);
         AVOSCloud.initialize(this, "YldGMeRURSIPLfupg3omoGwD-gzGzoHsz", "fArCa58wcKw5bsLRCmGY4nWq");
     }
 }
