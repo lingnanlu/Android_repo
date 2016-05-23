@@ -3,6 +3,8 @@ package io.github.lingnanlu.gaoxiaolian.ui.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import io.github.lingnanlu.gaoxiaolian.R;
+
 public class SettingActivity extends AppCompatActivity {
 
     @Override
