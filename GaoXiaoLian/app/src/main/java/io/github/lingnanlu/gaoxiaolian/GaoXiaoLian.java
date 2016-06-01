@@ -1,7 +1,6 @@
 package io.github.lingnanlu.gaoxiaolian;
 
 import android.app.Application;
-
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
@@ -45,6 +44,7 @@ public class GaoXiaoLian extends Application {
 
         return user;
     }
+
 
     public static void setUser(User user) {
         GaoXiaoLian.user = user;
